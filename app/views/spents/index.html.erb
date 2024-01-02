@@ -1,0 +1,26 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Spents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t(".name") %></th>
+      <th><%= t(".amount") %></th>
+      <th><%= t(".category") %></th>
+      <th><%= t(".subcategory") %></th>
+    </tr>
+  </thead>
+  <tbody id="spents_tbody" is="turbo-frame">
+    <%= render spents %>
+  </tbody>
+  <tr>
+
+  </tr>
+</table>
+<div>
+  <%= turbo_frame_tag Spent.new %>
+</div>
+<div>
+  <%= link_to t(".new_spent"), new_spent_path, data: { turbo_frame: dom_id(Spent.new) }	%>
+</div>
