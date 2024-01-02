@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_02_033054) do
   enable_extension "plpgsql"
 
   create_table "spents", force: :cascade do |t|
-    t.integer "amount"
+    t.bigint "amount"
     t.string "name"
     t.bigint "category_id"
     t.bigint "subcategory_id"
