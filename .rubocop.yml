@@ -19,3 +19,6 @@ AllCops:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Minitest/MultipleAssertions:
+  Enabled: false
