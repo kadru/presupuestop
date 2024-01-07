@@ -89,7 +89,7 @@ class SpentsController < ApplicationController
       params
         .require(:spent)
         .permit(:name,
-                :amount,
+                :amount_unit,
                 :category_id,
                 :subcategory_id)
     end

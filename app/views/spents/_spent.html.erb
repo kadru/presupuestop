@@ -1,6 +1,6 @@
 <tr id="<%= dom_id spent %>">
   <td><%= spent.name %></td>
-  <td><%= spent.amount %></td>
+  <td><%= number_to_currency(spent.amount_unit) %></td>
   <td>
     <%= spent.category_name %>
   </td>

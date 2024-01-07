@@ -1,13 +1,9 @@
 <%= form_with(model: spent) do |form| %>
   <% if spent.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(spent.errors.count, "error") %> prohibited this spent from being saved:</h2>
-
-      <ul>
-        <% spent.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="warning">
+      <h4>
+        <%= t("activerecord.errors.messages.record_invalid", errors: spent.errors.full_messages.to_sentence)%>
+      </h4>
     </div>
   <% end %>
 
@@ -15,8 +11,8 @@
    <%= form.label :name %>
    <%= form.text_field :name %>
 
-   <%= form.label :amount %>
-   <%= form.number_field :amount %>
+   <%= form.label :amount_unit %>
+   <%= form.number_field :amount_unit, step: "0.01" %>
 
    <%= form.label :category_id %>
    <%= form.select :category_id,
