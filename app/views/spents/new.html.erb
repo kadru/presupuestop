@@ -1,11 +1,9 @@
 <h1>New spent</h1>
 
-<%= turbo_frame_tag spent do %>
-  <%= render "form",
-             spent: spent,
-             categories: categories,
-             subcategories: subcategories %>
-<% end %>
+<%= render "form",
+           spent: spent,
+           categories: categories,
+           subcategories: subcategories %>
 
 <br>
 

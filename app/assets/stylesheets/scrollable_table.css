@@ -1,0 +1,13 @@
+.scrollable-table {
+  overflow-y: auto;
+  height: 70vh;
+}
+
+.scrollable-table > table {
+  width: 100%;
+}
+
+.scrollable-table thead {
+  position: sticky;
+  top: 0px;
+}

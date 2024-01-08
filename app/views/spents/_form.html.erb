@@ -1,4 +1,4 @@
-<%= form_with(model: spent) do |form| %>
+<%= form_with(model: spent, class: "pure-form pure-form-aligned") do |form| %>
   <% if spent.errors.any? %>
     <div class="warning">
       <h4>
@@ -7,28 +7,39 @@
     </div>
   <% end %>
 
-  <div>
-   <%= form.label :name %>
-   <%= form.text_field :name %>
+  <fieldset>
+    <div class="pure-control-group">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
 
-   <%= form.label :amount_unit %>
-   <%= form.number_field :amount_unit, step: "0.01" %>
+   <div class="pure-control-group">
+     <%= form.label :amount_unit %>
+     <%= form.number_field :amount_unit, step: "0.01" %>
+   </div>
 
-   <%= form.label :category_id %>
-   <%= form.select :category_id,
-                   categories,
-                   {
-                     include_blank: true
-                   },
-                   data: {
-                    controller: "cat-select",
-                    action: "cat-select#loadSubcategories",
-                    cat_select_target_value: "spent_subcategory_id"
-                  } %>
+   <div class="pure-control-group">
+     <%= form.label :category_id %>
+     <%= form.select :category_id,
+                     categories,
+                     {
+                       include_blank: true
+                     },
+                     data: {
+                      controller: "cat-select",
+                      action: "cat-select#loadSubcategories",
+                      cat_select_target_value: "spent_subcategory_id"
+                    }    %>
+   </div>
 
-   <%= form.label :subcategory_id %>
-   <%= form.select :subcategory_id,
-                   subcategories %>
-   <%= form.submit %>
-  </div>
+   <div class="pure-control-group">
+     <%= form.label :subcategory_id %>
+     <%= form.select :subcategory_id,
+                     subcategories %>
+   </div>
+
+   <div class="pure-controls">
+     <%= form.submit class: "pure-button pure-button-primary" %>
+   </div>
+  </fieldset>
 <% end %>

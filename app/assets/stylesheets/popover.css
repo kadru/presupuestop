@@ -1,0 +1,7 @@
+#popoverContainer {
+  border: 0px;
+}
+
+#popoverContainer::backdrop {
+  background: rgba(0, 0, 0, 0.856);
+}
