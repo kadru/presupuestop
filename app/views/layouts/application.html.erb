@@ -11,14 +11,42 @@
                             integrity: "sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls",
                             crossorigin: "anonymous",
                             "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css",
+                            "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <header></header>
-    <main>
-      <%= yield %>
-    </main>
-    <footer></footer>
+    <div id="layout" class="pure-g">
+      <div class="sidebar pure-u-1 pure-u-md-1-5">
+        <header class="header">
+          <h2 class="brand-title"> <%= t("titles.spents") %></h1>
+          <h3 class="brand-tagline"> <%= t("descriptions.spents")%> </h2>
+          <nav class="nav">
+            <ul class="nav-list">
+              <li class="nav-item">
+                <%= link_to t(".spents"), spents_path, class: "pure-button" %>
+              </li>
+            </ul>
+        </header>
+        </nav>
+      </div>
+      <div class="content pure-u-1 pure-u-md-4-5">
+        <main>
+          <%= yield %>
+        </main>
+        <footer class="footer">
+         <div class="pure-menu pure-menu-horizontal">
+           <ul>
+             <li class="pure-menu-item">
+               <a href="https://github.com/kadru/presupuestop" target="_blank" class="pure-menu-link">
+                 GitHub
+               </a>
+             </li>
+           </ul>
+         </div>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>
