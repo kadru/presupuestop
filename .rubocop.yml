@@ -22,3 +22,6 @@ Style/StringLiterals:
 
 Minitest/MultipleAssertions:
   Enabled: false
+
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: false
