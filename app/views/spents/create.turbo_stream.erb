@@ -1,4 +1,4 @@
-<%= turbo_stream.append "spents_tbody",
+<%= turbo_stream.prepend "spents_tbody",
                          partial: "spents/spent",
                          locals: { spent: spent } %>
 <%= turbo_stream.update Spent.new, "" %>

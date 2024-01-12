@@ -5,7 +5,9 @@ class Spent < ApplicationRecord
   belongs_to :category
   belongs_to :subcategory
 
-  scope :with_category_subcategory, -> { includes(:category, :subcategory) }
+  scope :ordered_with_category_subcategory, lambda {
+    order(id: :desc).includes(:category, :subcategory)
+  }
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :amount, presence: true, numericality: { only_integer: true }
