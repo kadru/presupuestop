@@ -51,7 +51,7 @@ class SpentsTest < ApplicationSystemTestCase
     click_on "New Spent"
     click_on "Create Spent"
 
-    assert_text("Validation failed")
+    assert_text("can't be blank")
   end
 
   test "should update Spent" do

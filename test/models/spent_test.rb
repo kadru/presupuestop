@@ -24,6 +24,16 @@ class SpentTest < ActiveSupport::TestCase
       assert_in_delta 1234.12, spent.amount_unit
       assert_equal 123_412, spent.amount
     end
+
+    context "when given value is nil" do
+      should "write the given amount as nil" do
+        spent = Spent.new
+        spent.amount_unit = nil
+
+        assert_nil spent.amount_unit
+        assert_nil spent.amount
+      end
+    end
   end
 
   describe "#amount_unit" do
@@ -34,10 +44,10 @@ class SpentTest < ActiveSupport::TestCase
     end
 
     context "when amount is nil" do
-      should "returns 0" do
+      should "returns nil" do
         spent = Spent.new amount: nil
 
-        assert_in_delta BigDecimal("0"), spent.amount_unit
+        assert_nil spent.amount_unit
       end
     end
   end

@@ -20,9 +20,14 @@
                type: "button",
                class: "pure-button pure-button-primary",
                popovertarget: "popoverContainer" %>
-<div id="popoverContainer" popover>
+
+<div id="popoverContainer"
+     popover
+     data-controller="popover-form">
+  <%= turbo_frame_tag spent do %>
   <%= render "form",
-             spent: Spent.new,
+             spent: spent,
              categories: categories,
              subcategories: subcategories %>
+   <% end %>
 </div>

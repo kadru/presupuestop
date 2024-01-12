@@ -1,12 +1,4 @@
 <%= form_with(model: spent, class: "pure-form pure-form-aligned") do |form| %>
-  <% if spent.errors.any? %>
-    <div class="warning">
-      <h4>
-        <%= t("activerecord.errors.messages.record_invalid", errors: spent.errors.full_messages.to_sentence)%>
-      </h4>
-    </div>
-  <% end %>
-
   <fieldset>
     <div class="pure-control-group">
       <%= form.label :name %>

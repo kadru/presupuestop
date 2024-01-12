@@ -7,6 +7,9 @@ class Spent < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :amount, presence: true, numericality: { only_integer: true }
+  validates :amount_unit, presence: true, numericality: true
+  validates :category_id, presence: true
+  validates :subcategory_id, presence: true
 
   delegate :name,
            to: :category,
@@ -21,11 +24,16 @@ class Spent < ApplicationRecord
 
   def amount_unit=(value)
     super(value)
-    self.amount = (attributes["amount_unit"] * 100).to_i
+    amount_unit_ = attributes["amount_unit"]
+    self.amount =  if amount_unit_.nil?
+                     amount_unit_
+                   else
+                     (attributes["amount_unit"] * 100).to_i
+                   end
   end
 
   def amount_unit
-    return BigDecimal("0") if amount.nil?
+    return if amount.nil?
 
     quotient, remainder = amount.divmod 100
     BigDecimal("#{quotient}.#{remainder}")

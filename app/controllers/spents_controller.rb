@@ -7,6 +7,7 @@ class SpentsController < ApplicationController
     render :index,
            locals: {
              spents: Spent.all,
+             spent: Spent.new,
              categories: Category.for_select,
              subcategories: []
            }
@@ -33,24 +34,24 @@ class SpentsController < ApplicationController
 
   # POST /spents or /spents.json
   def create
-    @spent = Spent.new(spent_params)
+    spent = Spent.new(spent_params)
 
     respond_to do |format|
-      if @spent.save
+      if spent.save
         format.html { redirect_to spents_path, notice: t(".successfully_created") }
         format.turbo_stream do
-          render :create, locals: { spent: @spent }
+          render :create, locals: { spent: }
         end
       else
         format.html do
           render :new,
-                 locals: { 
-                  spent: @spent,
-                  categories: Category.for_select,
-                  subcategories: []
+                 locals: {
+                   spent:,
+                   categories: Category.for_select,
+                   subcategories: []
                  },
                  status: :unprocessable_entity
-         end
+        end
       end
     end
   end

@@ -33,6 +33,10 @@ a:focus {
   color: var(--warning);
 }
 
+form.pure-form  .warning{
+  color: var(--warning);
+}
+
 table.pure-table.compact-table td,
 table.pure-table.compact-table th {
   padding: 0.45em 0.27em;
