@@ -6,7 +6,7 @@ class SpentsController < ApplicationController
     @spents = Spent.all
     render :index,
            locals: {
-             spents: Spent.all,
+             spents: Spent.with_category_subcategory,
              spent: Spent.new,
              categories: Category.for_select,
              subcategories: []
