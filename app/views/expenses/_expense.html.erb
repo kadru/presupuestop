@@ -1,0 +1,16 @@
+<tr id="<%= dom_id expense %>">
+  <td><%= expense.name %></td>
+  <td><%= number_to_currency(expense.amount_unit) %></td>
+  <td>
+    <%= expense.category_name %>
+  </td>
+  <td>
+    <%= expense.subcategory_name %>
+  </td>
+  <td>
+    <%= button_to t(".delete"),
+                  expense_path(expense),
+                  method: :delete,
+                  class: "pure-button" %>
+  </td>
+</tr>

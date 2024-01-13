@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class SpentTest < ActiveSupport::TestCase
+class ExpenseTest < ActiveSupport::TestCase
   context "associations" do
     should belong_to(:category)
     should belong_to(:subcategory)
@@ -18,36 +18,36 @@ class SpentTest < ActiveSupport::TestCase
 
   describe "#amount_unit=" do
     should "write the given amount in cents" do
-      spent = Spent.new
-      spent.amount_unit = "1234.12"
+      expense = Expense.new
+      expense.amount_unit = "1234.12"
 
-      assert_in_delta 1234.12, spent.amount_unit
-      assert_equal 123_412, spent.amount
+      assert_in_delta 1234.12, expense.amount_unit
+      assert_equal 123_412, expense.amount
     end
 
     context "when given value is nil" do
       should "write the given amount as nil" do
-        spent = Spent.new
-        spent.amount_unit = nil
+        expense = Expense.new
+        expense.amount_unit = nil
 
-        assert_nil spent.amount_unit
-        assert_nil spent.amount
+        assert_nil expense.amount_unit
+        assert_nil expense.amount
       end
     end
   end
 
   describe "#amount_unit" do
     should "return te amount in unit(froms cents to currency unit)" do
-      spent = Spent.new amount: 200_000
+      expense = Expense.new amount: 200_000
 
-      assert_in_delta BigDecimal("2000"), spent.amount_unit
+      assert_in_delta BigDecimal("2000"), expense.amount_unit
     end
 
     context "when amount is nil" do
       should "returns nil" do
-        spent = Spent.new amount: nil
+        expense = Expense.new amount: nil
 
-        assert_nil spent.amount_unit
+        assert_nil expense.amount_unit
       end
     end
   end

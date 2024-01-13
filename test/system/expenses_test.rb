@@ -3,11 +3,13 @@
 require "application_system_test_case"
 
 class SpentsTest < ApplicationSystemTestCase
-  test "visiting the index" do
-    create_spent
-    visit spents_url
+  driven_by :selenium, using: :chrome
 
-    assert_selector "h2", text: "SPENTS"
+  test "visiting the index" do
+    create_expense
+    visit expenses_url
+
+    assert_selector "h2", text: "EXPENSE"
     within "table" do
       # Assert headers
       assert_text "Name"
@@ -23,17 +25,17 @@ class SpentsTest < ApplicationSystemTestCase
     end
   end
 
-  test "should create spent" do
+  test "should create expense" do
     create(:category_with_subcategories)
 
-    visit spents_url
-    click_on "New Spent"
+    visit expenses_url
+    click_on "New Expense"
 
-    fill_in "spent[name]", with: "cinema"
-    fill_in "spent[amount_unit]", with: 1111
-    select "vivienda", from: "spent[category_id]"
-    select "renta", from: "spent[subcategory_id]"
-    click_on "Create Spent"
+    fill_in "expense[name]", with: "cinema"
+    fill_in "expense[amount_unit]", with: 1111
+    select "vivienda", from: "expense[category_id]"
+    select "renta", from: "expense[subcategory_id]"
+    click_on "Create Expense"
 
     within "table" do
       assert_text "cinema"
@@ -47,34 +49,34 @@ class SpentsTest < ApplicationSystemTestCase
     category = Category.create! name: "vivienda"
     Subcategory.create! name: "renta", category_id: category.id
 
-    visit spents_url
-    click_on "New Spent"
-    click_on "Create Spent"
+    visit expenses_url
+    click_on "New Expense"
+    click_on "Create Expense"
 
     assert_text("can't be blank")
   end
 
-  test "should update Spent" do
+  test "should update Expense" do
     skip "not implemented yet"
   end
 
-  test "should destroy Spent" do
-    spent = create_spent
+  test "should destroy Expense" do
+    expense = create_expense
 
-    visit spents_url
+    visit expenses_url
 
-    within "tr#spent_#{spent.id}" do
+    within "tr#expense_#{expense.id}" do
       click_button "delete"
     end
 
-    assert_no_css "#spent_#{spent.id}"
+    assert_no_css "#spent_#{expense.id}"
   end
 
   private
 
-  def create_spent
+  def create_expense
     category = create(:category_with_subcategories)
 
-    create(:spent, category:, subcategory: category.subcategories.last)
+    create(:expense, category:, subcategory: category.subcategories.last)
   end
 end

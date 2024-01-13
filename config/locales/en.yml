@@ -244,6 +244,6 @@ en:
       short: "%d %b %H:%M"
     pm: pm
   
-  spents:
-    spent:
+  expenses:
+    expense:
       delete: delete

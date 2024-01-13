@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Stores spents done with amount and categories
-class Spent < ApplicationRecord
+class Expense < ApplicationRecord
   belongs_to :category
   belongs_to :subcategory
 

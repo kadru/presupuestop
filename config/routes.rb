@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :spents
+  resources :expenses
   resources :categories, only: [] do
     resources :subcategories, only: [:index]
   end

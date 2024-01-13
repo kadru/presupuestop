@@ -1,4 +1,4 @@
-<%# locals: (spents:, spent:, categories:, subcategories:) %>
+<%# locals: (expenses:, expense:, categories:, subcategories:) %>
 
 <div class="scrollable-table">
   <table class="pure-table pure-table-horizontal pure-table-striped compact-table scrollable">
@@ -11,15 +11,15 @@
         <th><%= t(".actions") %></th>
       </tr>
     </thead>
-    <tbody id="spents_tbody" is="turbo-frame">
-      <%= render spents %>
+    <tbody id="expenses_tbody" is="turbo-frame">
+      <%= render expenses %>
     </tbody>
   </table>
 </div>
 
 <br>
 
-<%= button_tag t(".new_spent"),
+<%= button_tag t(".new_expense"),
                type: "button",
                class: "pure-button pure-button-primary",
                popovertarget: "popoverContainer" %>
@@ -27,9 +27,9 @@
 <div id="popoverContainer"
      popover
      data-controller="popover-form">
-  <%= turbo_frame_tag spent do %>
+  <%= turbo_frame_tag expense do %>
   <%= render "form",
-             spent: spent,
+             expense: expense,
              categories: categories,
              subcategories: subcategories %>
    <% end %>

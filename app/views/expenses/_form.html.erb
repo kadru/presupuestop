@@ -1,6 +1,6 @@
-<%# locals: (spent:, categories:, subcategories:) %>
+<%# locals: (expense:, categories:, subcategories:) %>
 
-<%= form_with(model: spent, class: "pure-form pure-form-aligned") do |form| %>
+<%= form_with(model: expense, class: "pure-form pure-form-aligned") do |form| %>
   <fieldset>
     <div class="pure-control-group">
       <%= form.label :name %>
@@ -22,7 +22,7 @@
                      data: {
                       controller: "cat-select",
                       action: "cat-select#loadSubcategories",
-                      cat_select_target_value: "spent_subcategory_id"
+                      cat_select_target_value: "expense_subcategory_id"
                     }    %>
    </div>
 

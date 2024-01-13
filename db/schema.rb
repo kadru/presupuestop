@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_03_024019) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_13_034507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,15 +21,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_024019) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "spents", force: :cascade do |t|
+  create_table "expenses", force: :cascade do |t|
     t.bigint "amount"
     t.string "name"
     t.bigint "category_id"
     t.bigint "subcategory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_spents_on_category_id"
-    t.index ["subcategory_id"], name: "index_spents_on_subcategory_id"
+    t.index ["category_id"], name: "index_expenses_on_category_id"
+    t.index ["subcategory_id"], name: "index_expenses_on_subcategory_id"
   end
 
   create_table "subcategories", force: :cascade do |t|
