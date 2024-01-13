@@ -71,11 +71,12 @@ class SpentsController < ApplicationController
 
   # DELETE /spents/1 or /spents/1.json
   def destroy
-    @spent.destroy!
+    spent = Spent.find params[:id]
+    spent.destroy
 
     respond_to do |format|
       format.html { redirect_to spents_url, notice: "Spent was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { render :destroy, locals: { spent: } }
     end
   end
 

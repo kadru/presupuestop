@@ -59,7 +59,15 @@ class SpentsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Spent" do
-    skip "not implemented yet"
+    spent = create_spent
+
+    visit spents_url
+
+    within "tr#spent_#{spent.id}" do
+      click_button "delete"
+    end
+
+    assert_no_css "#spent_#{spent.id}"
   end
 
   private
@@ -67,6 +75,6 @@ class SpentsTest < ApplicationSystemTestCase
   def create_spent
     category = create(:category_with_subcategories)
 
-    create(:spent, category: category, subcategory: category.subcategories.last)
+    create(:spent, category:, subcategory: category.subcategories.last)
   end
 end
