@@ -3,8 +3,6 @@
 require "application_system_test_case"
 
 class SpentsTest < ApplicationSystemTestCase
-  driven_by :selenium, using: :chrome
-
   test "visiting the index" do
     create_expense
     visit expenses_url
