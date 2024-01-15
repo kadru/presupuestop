@@ -7,7 +7,7 @@ class ExpensesController < ApplicationController
     render :index,
            locals: {
              expenses: Expense.ordered_with_category_subcategory,
-             expense: Expense.new,
+             new_expense: Expense.new,
              categories: Category.for_select,
              subcategories: []
            }
@@ -43,7 +43,7 @@ class ExpensesController < ApplicationController
       if expense.save
         format.html { redirect_to spents_path, notice: t(".successfully_created") }
         format.turbo_stream do
-          render :create, locals: { expense: }
+          render :create, locals: { expense:, new_expense: Expense.new }
         end
       else
         format.html do

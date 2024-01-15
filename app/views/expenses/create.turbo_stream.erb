@@ -1,4 +1,4 @@
 <%= turbo_stream.prepend "expenses_tbody",
                          partial: "expenses/expense",
                          locals: { expense: expense } %>
-<%= turbo_stream.update Expense.new, "" %>
+<%= turbo_stream.update new_expense, "" %>

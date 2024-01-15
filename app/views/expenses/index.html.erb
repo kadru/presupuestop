@@ -1,4 +1,4 @@
-<%# locals: (expenses:, expense:, categories:, subcategories:) %>
+<%# locals: (expenses:, new_expense:, categories:, subcategories:) %>
 
 <div class="scrollable-table">
   <table class="pure-table pure-table-horizontal pure-table-striped compact-table scrollable">
@@ -28,9 +28,9 @@
      class="popover-container"
      popover
      data-controller="popover-form">
-  <%= turbo_frame_tag expense do %>
+  <%= turbo_frame_tag new_expense do %>
   <%= render "form",
-             expense: expense,
+             expense: new_expense,
              categories: categories,
              subcategories: subcategories %>
    <% end %>
