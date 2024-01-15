@@ -10,10 +10,10 @@ class SpentsTest < ApplicationSystemTestCase
     assert_selector "h2", text: "EXPENSE"
     within "table" do
       # Assert headers
-      assert_text "Name"
-      assert_text "Amount"
-      assert_text "Category"
-      assert_text "Subcategory"
+      assert_text "name"
+      assert_text "amount"
+      assert_text "category"
+      assert_text "subcategory"
 
       # assert rows
       assert_text "renta departamento"
@@ -27,13 +27,13 @@ class SpentsTest < ApplicationSystemTestCase
     create(:category_with_subcategories)
 
     visit expenses_url
-    click_on "New Expense"
+    click_on "new expense"
 
     fill_in "expense[name]", with: "cinema"
     fill_in "expense[amount_unit]", with: 1111
     select "vivienda", from: "expense[category_id]"
     select "renta", from: "expense[subcategory_id]"
-    click_on "Create Expense"
+    click_on "add expense"
 
     within "table" do
       assert_text "cinema"
@@ -48,8 +48,8 @@ class SpentsTest < ApplicationSystemTestCase
     Subcategory.create! name: "renta", category_id: category.id
 
     visit expenses_url
-    click_on "New Expense"
-    click_on "Create Expense"
+    click_on "new expense"
+    click_on "add expense"
 
     assert_text("can't be blank")
   end
@@ -66,7 +66,7 @@ class SpentsTest < ApplicationSystemTestCase
     fill_in "expense[amount_unit]", with: 20_000
     select "vivienda", from: "expense[category_id]"
     select "renta", from: "expense[subcategory_id]"
-    click_on "Update Expense"
+    click_on "update expense"
 
     within "table" do
       assert_text "renta"
@@ -85,7 +85,7 @@ class SpentsTest < ApplicationSystemTestCase
     end
 
     fill_in "expense[name]", with: ""
-    click_on "Update Expense"
+    click_on "update expense"
 
     assert_text "can't be blank"
   end

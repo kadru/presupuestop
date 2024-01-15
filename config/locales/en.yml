@@ -180,6 +180,10 @@ en:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+      expense:
+        create: add expense
+        update: update expense
+        submit: save expense
   number:
     currency:
       format:
@@ -244,7 +248,22 @@ en:
       short: "%d %b %H:%M"
     pm: pm
   
+  titles:
+    expenses: Expenses
+  descriptions:
+    expenses: TODO
+
   expenses:
+    index:
+      name: name
+      amount: amount
+      category: category
+      subcategory: subcategory
+      actions: actions
+      new_expense: new expense
     expense:
       delete: delete
       edit: edit
+
+  links:
+    expenses: expenses
