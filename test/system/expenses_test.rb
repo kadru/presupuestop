@@ -45,7 +45,7 @@ class SpentsTest < ApplicationSystemTestCase
     end
   end
 
-  test "when updating empty data then should show a error message" do
+  test "when creating with empty data then should show a error message" do
     category = Category.create! name: "vivienda"
     Subcategory.create! name: "renta", category_id: category.id
 
@@ -57,7 +57,39 @@ class SpentsTest < ApplicationSystemTestCase
   end
 
   test "should update Expense" do
-    skip "not implemented yet"
+    expense = create_expense
+
+    visit expenses_url
+    within "tr#expense_#{expense.id}" do
+      click_button "edit"
+    end
+
+    fill_in "expense[name]", with: "renta"
+    fill_in "expense[amount_unit]", with: 20_000
+    select "vivienda", from: "expense[category_id]"
+    select "renta", from: "expense[subcategory_id]"
+    click_on "Update Expense"
+
+    within "table" do
+      assert_text "renta"
+      assert_text "$20,000.00"
+      assert_text "vivienda"
+      assert_text "renta"
+    end
+  end
+
+  test "when updating with empty data then should show a error message" do
+    expense = create_expense
+
+    visit expenses_url
+    within "tr#expense_#{expense.id}" do
+      click_button "edit"
+    end
+
+    fill_in "expense[name]", with: ""
+    click_on "Update Expense"
+
+    assert_text "can't be blank"
   end
 
   test "should destroy Expense" do

@@ -247,3 +247,4 @@ en:
   expenses:
     expense:
       delete: delete
+      edit: edit

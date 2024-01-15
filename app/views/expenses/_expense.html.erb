@@ -12,5 +12,15 @@
                   expense_path(expense),
                   method: :delete,
                   class: "pure-button" %>
+    <%= button_tag t(".edit"),
+                  type: :button,
+                  class: "pure-button",
+                  popovertarget: "popoverEdit#{expense.id}" %>
+    <div id="popoverEdit<%=  expense.id %>"
+         class="popover-container"
+         popover
+         data-controller="popover-form">
+      <%= turbo_frame_tag expense, src: edit_expense_path(expense), loading: :lazy %>
+    </div>
   </td>
 </tr>

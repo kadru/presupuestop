@@ -22,9 +22,10 @@
 <%= button_tag t(".new_expense"),
                type: "button",
                class: "pure-button pure-button-primary",
-               popovertarget: "popoverContainer" %>
+               popovertarget: "popoverNew" %>
 
-<div id="popoverContainer"
+<div id="popoverNew"
+     class="popover-container"
      popover
      data-controller="popover-form">
   <%= turbo_frame_tag expense do %>

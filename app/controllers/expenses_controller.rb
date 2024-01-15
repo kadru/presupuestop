@@ -32,6 +32,13 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/1/edit
   def edit
+    expense = Expense.find params[:id]
+    render :edit,
+           locals: {
+             expense:,
+             categories: Category.for_select,
+             subcategories: Subcategory.from_category_select(expense.category_id)
+           }
   end
 
   # POST /expenses or /expenses.json
@@ -60,14 +67,20 @@ class ExpensesController < ApplicationController
 
   # PATCH/PUT /expenses/1 or /expenses/1.json
   def update
-    respond_to do |format|
-      if @expense.update(spent_params)
-        format.html { redirect_to spent_url(@expense), notice: "Expense was successfully updated." }
-        format.json { render :show, status: :ok, location: @expense }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @expense.errors, status: :unprocessable_entity }
+    expense = Expense.find params[:id]
+    if expense.update(spent_params)
+      respond_to do |format|
+        format.html { redirect_to spents_path, notice: t(".successfully_updated") }
+        format.turbo_stream { render :update, locals: { expense: } }
       end
+    else
+      render :edit,
+             locals: {
+               expense:,
+               categories: Category.for_select,
+               subcategories: Subcategory.from_category_select(expense.category_id)
+             },
+             status: :unprocessable_entity
     end
   end
 

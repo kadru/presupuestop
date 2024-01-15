@@ -1,0 +1,16 @@
+<%# locals: (expense:, categories:, subcategories:) %>
+
+<h1><%= t(".title") %></h1>
+
+<%= turbo_frame_tag expense do %>
+  <%= render "form",
+             expense: expense,
+             categories: categories,
+             subcategories: subcategories %>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to t("links.expenses"), expenses_path %>
+</div>

@@ -42,4 +42,8 @@ class Expense < ApplicationRecord
     quotient, remainder = amount.divmod 100
     BigDecimal("#{quotient}.#{remainder}")
   end
+
+  def category_blank?
+    category.blank?
+  end
 end
