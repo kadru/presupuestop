@@ -20,6 +20,9 @@ AllCops:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
+Metrics/MethodLength:
+  Enabled: false
+
 Minitest/MultipleAssertions:
   Enabled: false
 
