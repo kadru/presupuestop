@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :expenses, except: %i[show]
   resources :categories, only: [] do

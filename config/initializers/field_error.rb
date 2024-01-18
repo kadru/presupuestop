@@ -8,6 +8,7 @@ ActionView::Base.field_error_proc = proc do |html_tag, instance|
     html_tag + content_tag(
       :span,
       instance.error_message.join(" "),
-      class: "pure-form-message-inline warning")
+      class: "pure-form-message-inline warning"
+    )
   end
 end

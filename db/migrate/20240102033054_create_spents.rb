@@ -1,4 +1,6 @@
-class CreateSpents < ActiveRecord::Migration[7.1]
+# frozen_string_literal: true
+
+class CreateSpents < ActiveRecord::Migration[7.1] # :nodoc:
   def change
     create_table :spents do |t|
       t.bigint :amount

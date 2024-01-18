@@ -22,6 +22,8 @@ Style/StringLiterals:
 
 Metrics/MethodLength:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: false
 
 Minitest/MultipleAssertions:
   Enabled: false
