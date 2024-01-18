@@ -43,7 +43,5 @@ class Expense < ApplicationRecord
     BigDecimal("#{quotient}.#{remainder}")
   end
 
-  def category_blank?
-    category.blank?
-  end
+  delegate :blank?, to: :category, prefix: true
 end

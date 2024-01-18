@@ -51,4 +51,8 @@ class ExpenseTest < ActiveSupport::TestCase
       end
     end
   end
+
+  describe "#category_blank?" do
+    should delegate_method(:blank?).to(:category).with_prefix
+  end
 end
