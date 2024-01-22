@@ -1,0 +1,75 @@
+#menu {
+  margin-right: -150px;
+  width: 150px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.app-menu {
+  background-color: var(--sidebar);
+  color: var(--sidebarfont);
+}
+
+.app-menu a {
+  color: inherit;
+}
+
+.app-menu .pure-menu-heading {
+  color: inherit;
+}
+
+
+#toggle-menu {
+  display: none;
+}
+
+#layout.active #menu {
+  right: 150px;
+  width: 150px;
+}
+
+#layout.active #toggle-menu {
+  right: 150px;
+}
+
+#layout,
+#menu,
+#toggle-menu {
+  transition: all 0.2s ease-in;
+}
+
+@media (max-width: 48em) {
+  #toggle-menu {
+    position: fixed;
+    display: block;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    width: 2em;
+    height: auto;
+  }
+}
+
+@media (min-width: 48em) {
+  #menu {
+    right: 150;
+  }
+}
+
+@media (max-width: 48em) {
+
+  /* Only apply this when the window is small. Otherwise, the following
+    case results in extra padding on the left:
+        * Make the window small.
+        * Tap the menu to trigger the active state.
+        * Make the window large again.
+    */
+  #layout.active {
+    position: relative;
+    right: 150px;
+  }
+}

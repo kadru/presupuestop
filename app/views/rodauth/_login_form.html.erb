@@ -1,0 +1,52 @@
+<%= form_with(
+      url: rodauth.login_path,
+      method: :post,
+      class: "pure-form pure-form-stacked",
+      data: { turbo: false }) do |form| %>
+  <fieldset class="pure-group">
+    <% if rodauth.skip_login_field_on_login? %>
+      <%= form.label "login", rodauth.login_label %>
+      <%= form.email_field rodauth.login_param,
+                           value: params[rodauth.login_param],
+                           id: "login",
+                           class: "pure-input-1",
+                           readonly: true %>
+    <% else %>
+      <%= form.label "login", rodauth.login_label %>
+      <%= form.email_field rodauth.login_param,
+                           value: params[rodauth.login_param],
+                           id: "login",
+                           autocomplete: rodauth.login_field_autocomplete_value,
+                           class: "pure-input-1",
+                           required: true,
+                           aria: (
+                            { invalid: true,
+                              describedby: "login_error_message" } if rodauth.field_error(rodauth.login_param)) %>
+      <%= content_tag(:span,
+                      rodauth.field_error(rodauth.login_param),
+                      class: "pure-form-message warning",
+                      id: "login_error_message") if rodauth.field_error(rodauth.login_param) %>
+    <% end %>
+
+    <% unless rodauth.skip_password_field_on_login? %>
+      <%= form.label "password", rodauth.password_label %>
+      <%= form.password_field rodauth.password_param,
+                              value: "",
+                              id: "password",
+                              autocomplete: rodauth.password_field_autocomplete_value,
+                              required: true,
+                              class: "pure-input-1",
+                              aria: (
+                                { 
+                                  invalid: true,
+                                  describedby: "password_error_message"
+                                } if rodauth.field_error(rodauth.password_param)) %>
+      <%= content_tag(:span,
+                      rodauth.field_error(rodauth.password_param),
+                      class: "pure-form-message warning",
+                      id: "password_error_message") if rodauth.field_error(rodauth.password_param) %>
+    <% end %>
+
+  </fieldset>
+  <%= form.submit rodauth.login_button, class: "pure-button pure-input-1 pure-button-primary" %>
+<% end %>

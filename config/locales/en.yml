@@ -247,12 +247,17 @@ en:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
-  
+
+  # views
   titles:
     expenses: Expenses
   descriptions:
     expenses: TODO
+  rodauth:
+    login_form_footer:
+      dont_have_account: Don't have an account?
 
+  #controllers
   expenses:
     index:
       name: name

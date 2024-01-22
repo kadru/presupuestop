@@ -1,0 +1,10 @@
+<ul class="pure-menu-list">
+  <li class="pure-menu-item">
+    <% if rodauth.logged_in? %>
+      <%= link_to rodauth.logout_button,
+                  rodauth.logout_path,
+                  class: "pure-menu-link",
+                  data: { turbo_method: :post } %>
+    <% end %>
+  </li>
+</ul>

@@ -1,0 +1,23 @@
+<% unless rodauth.login_form_footer_links.empty? %>
+  <br>
+  <div class="pure-g text-center">
+    <div class="pure-u-1">
+      <%= link_to rodauth.reset_password_request_link_text, rodauth.reset_password_request_path %>
+    </div>
+  </div>
+  <br>
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <%= t(".dont_have_account") %>
+    </div>
+    <div class="pure-u-1-2 text-right">
+      <%= link_to rodauth.create_account_link_text, rodauth.create_account_path, class: "pure-button" %>
+    </div>
+  </div>
+  <br>
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <%= link_to rodauth.verify_account_resend_link_text, rodauth.verify_account_resend_path %>
+    </div>
+  </div>
+<% end %>
