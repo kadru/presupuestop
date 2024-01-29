@@ -16,16 +16,9 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="pure-g">
-    <% if notice %>
-      <div class="notice">
-        <%= notice %>
-      </div>
-    <% end %>
-    <% if alert %>
-      <div class="alert">
-      <%= alert %>
-      </div>
-    <% end %>
+    <div class="flash">
+      <%= render "shared/flash" %>
+    </div>
     <%= yield %>
   </body>
 </html>
