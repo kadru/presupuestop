@@ -14,6 +14,10 @@ module ActiveSupport
       alias describe context
     end
     # Add more helper methods to be used by all tests here...
+
+    def translate!(*, **keyword_args)
+      I18n.t(*, **keyword_args, raise: true)
+    end
   end
 end
 
