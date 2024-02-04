@@ -49,3 +49,7 @@ table.pure-table.compact-table th {
 .text-right {
   text-align: right;
 }
+
+.pure-g.centered-grid {
+  justify-content: center;
+}
