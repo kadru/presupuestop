@@ -39,7 +39,7 @@ class RodauthMain < Rodauth::Rails::Auth
 
     # The secret key used for hashing public-facing tokens for various features.
     # Defaults to Rails `secret_key_base`, but you can use your own secret key.
-    # hmac_secret "9da2c19ff1797e5182574396d3eca460d4c3db639d739eeb849b6bfb60884f9581d624406a52a03b3bccf5a8f2eb410337054cbb6f3bcf3a7062a0edafac0632"
+    # hmac_secret "9da2c19ff1797e5182574396d3eca460d4c3db639d739eeb849b6bfb60884f9581d624406a52a03b3bccf5a8f2eb41033705"
 
     # Use path prefix for all routes.
     # prefix "/auth"
@@ -111,7 +111,8 @@ class RodauthMain < Rodauth::Rails::Auth
     # flash_error_key :error # default is :alert
 
     # Override default flash messages.
-    # create_account_notice_flash "Your account has been created. Please verify your account by visiting the confirmation link sent to your email address."
+    # create_account_notice_flash "Your account has been created. Please verify your account by visiting the
+    # confirmation link sent to your email address."
     # require_login_error_flash "Login is required for accessing this page"
     # login_notice_flash nil
 
@@ -120,7 +121,8 @@ class RodauthMain < Rodauth::Rails::Auth
     # no_matching_login_message "user with this email address doesn't exist"
     # already_an_account_with_this_login_message "user with this email address already exists"
     # password_too_short_message { "needs to have at least #{password_minimum_length} characters" }
-    # login_does_not_meet_requirements_message { "invalid email#{", #{login_requirement_message}" if login_requirement_message}" }
+    # login_does_not_meet_requirements_message {
+    # "invalid email#{", #{login_requirement_message}" if login_requirement_message}" }
 
     # Passwords shorter than 8 characters are considered weak according to OWASP.
     password_minimum_length 8

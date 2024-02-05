@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class CreateRodauth < ActiveRecord::Migration[7.1] # :nodoc:
-  def change
+  def change # rubocop:disable Metrics/AbcSize
     enable_extension "citext"
 
-    create_table :accounts do |t|
+    create_table :accounts do |t| # rubocop:disable Rails/CreateTableWithTimestamps
       t.integer :status, null: false, default: 1
       t.citext :email, null: false
       t.index :email, unique: true, where: "status IN (1, 2)"
@@ -12,6 +12,7 @@ class CreateRodauth < ActiveRecord::Migration[7.1] # :nodoc:
     end
 
     # Used by the password reset feature
+    # rubocop:disable Rails/DangerousColumnNames
     create_table :account_password_reset_keys, id: false do |t|
       t.bigint :id, primary_key: true
       t.foreign_key :accounts, column: :id
@@ -45,5 +46,6 @@ class CreateRodauth < ActiveRecord::Migration[7.1] # :nodoc:
       t.string :key, null: false
       t.datetime :deadline, null: false
     end
+    # rubocop:enable Rails/DangerousColumnNames
   end
 end
