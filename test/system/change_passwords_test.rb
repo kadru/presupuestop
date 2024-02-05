@@ -3,6 +3,10 @@
 require "application_system_test_case"
 
 class ChangePasswordsTest < ApplicationSystemTestCase
+  def teardown
+    ApplicationMailer.deliveries.clear
+  end
+
   test "user changes password" do
     account = create(:account)
 
@@ -15,5 +19,9 @@ class ChangePasswordsTest < ApplicationSystemTestCase
     click_on translate!("rodauth.change_password_button")
 
     assert_text translate!("rodauth.change_password_notice_flash")
+
+    email = ApplicationMailer.deliveries.last
+
+    assert_equal email.subject, translate!("rodauth.password_changed_email_subject")
   end
 end
