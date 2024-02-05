@@ -62,7 +62,7 @@ en:
     reset_password_email_sent_notice_flash: An email has been sent to you with a link to reset the password for your account
     reset_password_email_subject: Reset Password
     reset_password_error_flash: There was an error resetting your password
-    reset_password_explanatory_text: "<p>If you have forgotten your password, you can request a password reset:</p>"
+    reset_password_explanatory_text: "If you have forgotten your password, you can request a password reset:"
     reset_password_notice_flash: Your password has been reset
     reset_password_page_title: Reset Password
     reset_password_request_button: Request Password Reset
