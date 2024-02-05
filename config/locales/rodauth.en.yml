@@ -3,11 +3,11 @@ en:
     already_an_account_with_this_login_message: already an account with this login
     attempt_to_create_unverified_account_error_flash: The account you tried to create is currently awaiting verification
     attempt_to_login_to_unverified_account_error_flash: The account you tried to login with is currently awaiting verification
-    change_login_button: Change Login
+    change_login_button: Change Email
     change_login_error_flash: There was an error changing your login
     change_login_needs_verification_notice_flash: An email has been sent to you with a link to verify your login change
     change_login_notice_flash: Your login has been changed
-    change_login_page_title: Change Login
+    change_login_page_title: Change Email
     change_password_button: Change Password
     change_password_error_flash: There was an error changing your password
     change_password_notice_flash: Your password has been changed
@@ -43,7 +43,7 @@ en:
     no_matching_login_message: no matching login
     no_matching_reset_password_key_error_flash: 'There was an error resetting your password: invalid or expired password reset key'
     no_matching_verify_account_key_error_flash: 'There was an error verifying your account: invalid verify account key'
-    no_matching_verify_login_change_key_error_flash: 'There was an error verifying your login change: invalid verify login change key'
+    no_matching_verify_login_change_key_error_flash: 'There was an error verifying your email change: invalid verify login change key'
     password_changed_email_subject: Password Changed
     password_confirm_label: Confirm %{password_label}
     password_label: Password
@@ -84,9 +84,9 @@ en:
     verify_account_resend_error_flash: Unable to resend verify account email
     verify_account_resend_explanatory_text: "If you no longer have the email to verify the account, you can request that it be resent to you:"
     verify_account_resend_link_text: Resend Verify Account Information
-    verify_login_change_button: Verify Login Change
-    verify_login_change_duplicate_account_error_flash: Unable to change login as there is already an account with the new login
-    verify_login_change_email_subject: Verify Login Change
-    verify_login_change_error_flash: Unable to verify login change
-    verify_login_change_notice_flash: Your login change has been verified
-    verify_login_change_page_title: Verify Login Change
+    verify_login_change_button: Verify Email Change
+    verify_login_change_duplicate_account_error_flash: Unable to change email as there is already an account with the new email
+    verify_login_change_email_subject: Verify Email Change
+    verify_login_change_error_flash: Unable to verify email change
+    verify_login_change_notice_flash: Your email change has been verified
+    verify_login_change_page_title: Verify Email Change
