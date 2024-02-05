@@ -3,6 +3,10 @@
 require "application_system_test_case"
 
 class CreateAccount < ApplicationSystemTestCase
+  def teardown
+    ApplicationMailer.deliveries.clear
+  end
+
   test "create account" do
     visit "/create-account"
     fill_in "email", with: "user@example.com"
