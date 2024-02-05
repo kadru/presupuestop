@@ -1,0 +1,7 @@
+<%= form_with url: rodauth.verify_login_change_path,
+              method: :post,
+              class: "pure-form pure-form-stacked",
+              data: { turbo: false } do |form| %>
+  <br>
+  <%= form.submit rodauth.verify_login_change_button, class: "pure-button pure-input-1 pure-button-primary" %>
+<% end %>

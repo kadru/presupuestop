@@ -1,0 +1,32 @@
+<%= form_with url: rodauth.remember_path,
+              method: :post,
+              class: "pure-form pure-form-stacked",
+              data: { turbo: false } do |form| %>
+  <fieldset>
+    <legend>
+      <%= rodauth.remember_page_title %>
+    </legend>
+    <%= form.label "remember-remember", class: "pure-radio" do %>
+      <%= form.radio_button rodauth.remember_param,
+                            rodauth.remember_remember_param_value,
+                            id: "remember-remember" %>
+        <%= rodauth.remember_remember_label %>
+    <% end %>
+
+    <%= form.label "remember-forget", class: "pure-radio" do %>
+      <%= form.radio_button rodauth.remember_param,
+                            rodauth.remember_forget_param_value,
+                            id: "remember-forget" %>
+        <%= rodauth.remember_forget_label %>
+    <% end %>
+
+    <%= form.label "remember-disable", class: "pure-radio" do %>
+      <%= form.radio_button rodauth.remember_param,
+                            rodauth.remember_disable_param_value,
+                            id: "remember-disable" %>
+      <%= rodauth.remember_disable_label %>
+    <% end %>
+  </fieldset>
+
+  <%= form.submit rodauth.remember_button, class: "pure-button pure-input-1 pure-button-primary" %>
+<% end %>

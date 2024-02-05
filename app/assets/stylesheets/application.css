@@ -41,3 +41,15 @@ table.pure-table.compact-table td,
 table.pure-table.compact-table th {
   padding: 0.45em 0.27em;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.pure-g.centered-grid {
+  justify-content: center;
+}

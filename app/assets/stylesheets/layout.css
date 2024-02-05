@@ -1,10 +1,20 @@
 #layout {
+  position: relative;
   padding: 0;
+  right: 0;
 }
 
 .sidebar {
-  background: rgb(61, 79, 93);
+  background: var(--sidebar);
   color: #fff;
+}
+
+.sidebar span[class*="material-symbols-"]{
+  color: var(--sidebarfont);
+}
+
+.sidebar .pure-menu-link:hover {
+  background-color: var(--sidebar-link-hover);
 }
 
 .header {
@@ -72,6 +82,10 @@
   background: none;
 }
 
+.menu-lg-screen {
+  margin-top: auto;
+}
+
 @media (min-width: 48em) {
   .content {
     padding: 2em 3em 0;
@@ -96,5 +110,17 @@
 
   .footer {
     text-align: center;
+  }
+
+  .nav-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 48em) {
+  .menu-lg-screen {
+    display: none;
   }
 }

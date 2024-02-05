@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Presupuestop</title>
+    <title> <%= @page_title || "Presupuestop" %> </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,25 +13,51 @@
                             "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css",
                             "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined",
+                            "data-turob-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <div id="layout" class="pure-g">
+    <div id="layout"
+         class="pure-g"
+         data-controller="toggle"
+         data-toggle-toggle-class="active"
+         data-toggle-target="element">
       <div class="sidebar pure-u-1 pure-u-md-1-5">
-        <header class="header">
+        <div class="nav-menu-wrapper">
+          <header class="header">
           <h2 class="brand-title"> <%= t("titles.expenses") %></h1>
           <h3 class="brand-tagline"> <%= t("descriptions.expenses")%> </h2>
+          <a id="toggle-menu"
+             href="javascript:void(0);"
+             data-action="click->toggle#toggle">
+            <span class="material-symbols-outlined">menu</span>
+          </a>
+          <div id="menu" class="app-menu pure-menu" data-toggle-target="element">
+            <div class="pure-menu-heading">
+             MENU
+            </div>
+            <%= render "menu" %>
+          </div>
           <nav class="nav">
             <ul class="nav-list">
               <li class="nav-item">
                 <%= link_to t("links.expenses"), expenses_path, class: "pure-button" %>
               </li>
             </ul>
-        </header>
-        </nav>
+          </nav>
+          </header>
+
+          <div class="menu-lg-screen app-menu pure-menu text-right">
+            <%= render "menu" %>
+          </div>
+        </div>
       </div>
       <div class="content pure-u-1 pure-u-md-4-5">
+         <div class="flash">
+          <%= render "shared/flash" %>
+         </div>
         <main>
           <%= yield %>
         </main>
@@ -49,4 +75,12 @@
       </div>
     </div>
   </body>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("menu");
+      x.classList.toggle("active");
+      document.getElementById("layout").classList.toggle("active")
+    }
+  </script>
 </html>
