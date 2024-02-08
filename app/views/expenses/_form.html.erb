@@ -1,15 +1,15 @@
 <%# locals: (expense:, categories:, subcategories:) %>
 
-<%= form_with(model: expense, class: "pure-form pure-form-aligned") do |form| %>
+<%= form_with(model: expense, class: "pure-form pure-form-stacked") do |form| %>
   <fieldset>
     <div class="pure-control-group">
       <%= form.label :name %>
-      <%= form.text_field :name %>
+      <%= form.text_field :name, class: "pure-input-1" %>
     </div>
 
    <div class="pure-control-group">
      <%= form.label :amount_unit %>
-     <%= form.number_field :amount_unit, step: "0.01" %>
+     <%= form.number_field :amount_unit, step: "0.01", class: "pure-input-1" %>
    </div>
 
    <div class="pure-control-group">
@@ -23,13 +23,16 @@
                       controller: "cat-select",
                       action: "cat-select#loadSubcategories",
                       cat_select_target_value: "expense_subcategory_id"
-                    }    %>
+                    },
+                    class: "pure-input-1" %>
    </div>
 
    <div class="pure-control-group">
      <%= form.label :subcategory_id %>
      <%= form.select :subcategory_id,
-                     subcategories %>
+                     subcategories,
+                     {},
+                     class: "pure-input-1" %>
    </div>
 
    <div class="pure-controls">

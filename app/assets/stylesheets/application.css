@@ -53,3 +53,8 @@ table.pure-table.compact-table th {
 .pure-g.centered-grid {
   justify-content: center;
 }
+
+.to-right {
+  display: flex;
+  justify-content: flex-end;
+}
