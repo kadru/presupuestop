@@ -16,6 +16,21 @@ FactoryBot.define do
       end
     end
 
+    trait :with_expenses do
+      transient do
+        expenses_count { 1 }
+        category_for_expense { create(:category_with_subcategories) }
+      end
+
+      after(:create) do |account, context|
+        create_list(:expense,
+                    context.expenses_count,
+                    account:,
+                    category: context.category_for_expense,
+                    subcategory: context.category_for_expense.subcategories.last)
+      end
+    end
+
     factory :unverified_account do
       status { :unverified }
 

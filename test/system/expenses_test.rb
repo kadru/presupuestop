@@ -4,8 +4,8 @@ require "application_system_test_case"
 
 class SpentsTest < ApplicationSystemTestCase
   def setup
-    account = create(:account)
-    login email: account.email, password: account.password
+    @account = create(:account)
+    login email: @account.email, password: @account.password
   end
 
   test "visiting the index" do
@@ -112,6 +112,10 @@ class SpentsTest < ApplicationSystemTestCase
   def create_expense
     category = create(:category_with_subcategories)
 
-    create(:expense, category:, subcategory: category.subcategories.last)
+    @account.expenses.create!(
+      name: "renta departamento",
+      amount: 10_000,
+      category:,
+      subcategory: category.subcategories.last)
   end
 end

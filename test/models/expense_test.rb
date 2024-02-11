@@ -6,6 +6,7 @@ class ExpenseTest < ActiveSupport::TestCase
   context "associations" do
     should belong_to(:category)
     should belong_to(:subcategory)
+    should belong_to(:account)
   end
 
   context "validations" do

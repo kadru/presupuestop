@@ -2,6 +2,7 @@
 
 # Stores spents done with amount and categories
 class Expense < ApplicationRecord
+  belongs_to :account
   belongs_to :category
   belongs_to :subcategory
 
