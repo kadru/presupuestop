@@ -173,12 +173,17 @@ class RodauthMain < Rodauth::Rails::Auth
 
     # Redirect to wherever login redirects to after account verification.
     verify_account_redirect { login_redirect }
+    verify_account_email_sent_redirect { login_path }
 
     # Redirect to login page after password reset.
     reset_password_redirect { login_path }
+    reset_password_email_sent_redirect { login_path }
+    reset_password_email_recently_sent_redirect { login_path }
 
     # Ensure requiring login follows login route changes.
     require_login_redirect { login_path }
+
+    close_account_redirect { login_path }
 
     # ==> Deadlines
     # Change default deadlines for some actions.

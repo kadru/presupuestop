@@ -2,6 +2,8 @@
 
 # Manage expenses
 class ExpensesController < ApplicationController
+  before_action :authenticate
+
   # GET /expenses
   def index
     render :index,

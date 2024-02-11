@@ -32,4 +32,17 @@ class ResetPasswordsTest < ApplicationSystemTestCase
 
     assert_text translate!("rodauth.login_notice_flash")
   end
+
+  test "user requests a password reset recently" do
+    account = create(:account, :recently_password_reset)
+
+    visit "/reset-password-request"
+
+    assert_text translate!("rodauth.reset_password_explanatory_text")
+
+    fill_in "email", with: account.email
+    click_on translate!("rodauth.reset_password_request_button")
+
+    assert_text translate!("rodauth.reset_password_email_recently_sent_error_flash")
+  end
 end

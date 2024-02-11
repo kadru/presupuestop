@@ -3,6 +3,11 @@
 require "application_system_test_case"
 
 class SpentsTest < ApplicationSystemTestCase
+  def setup
+    account = create(:account)
+    login email: account.email, password: account.password
+  end
+
   test "visiting the index" do
     create_expense
     visit expenses_url
