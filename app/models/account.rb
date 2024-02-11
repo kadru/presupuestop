@@ -11,4 +11,9 @@ class Account < ApplicationRecord
            class_name: "Expense",
            dependent: :destroy,
            inverse_of: :account
+  has_many :categories, dependent: :destroy do
+    def for_select
+      pluck(:name, :id)
+    end
+  end
 end

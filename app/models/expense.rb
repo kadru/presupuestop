@@ -5,6 +5,11 @@ class Expense < ApplicationRecord
   belongs_to :account
   belongs_to :category
   belongs_to :subcategory
+  has_many :subcategories, through: :category, dependent: nil do
+    def for_select
+      pluck(:name, :id)
+    end
+  end
 
   scope :ordered_with_category_subcategory, lambda {
     order(id: :desc).includes(:category, :subcategory)

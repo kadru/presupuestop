@@ -6,5 +6,6 @@ class Category < ApplicationRecord
     pluck(:name, :id)
   end
 
+  belongs_to :account
   has_many :subcategories, dependent: :destroy
 end

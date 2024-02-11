@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :category do
     name { "vivienda" }
+    account
 
     factory :category_with_subcategories do
       transient do

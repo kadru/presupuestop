@@ -10,7 +10,7 @@ class ExpensesController < ApplicationController
            locals: {
              expenses: current_account.expenses_ordered_with_category_subcategory,
              new_expense: Expense.new,
-             categories: Category.for_select,
+             categories: current_account.categories.for_select,
              subcategories: []
            }
   end
@@ -20,7 +20,7 @@ class ExpensesController < ApplicationController
     render :new,
            locals: {
              expense: current_account.expenses.build,
-             categories: Category.for_select,
+             categories: current_account.categories.for_select,
              subcategories: []
            }
   end
@@ -31,8 +31,8 @@ class ExpensesController < ApplicationController
     render :edit,
            locals: {
              expense:,
-             categories: Category.for_select,
-             subcategories: Subcategory.from_category_select(expense.category_id)
+             categories: current_account.categories.for_select,
+             subcategories: expense.subcategories.for_select
            }
   end
 
@@ -55,7 +55,7 @@ class ExpensesController < ApplicationController
           render :new,
                  locals: {
                    expense:,
-                   categories: Category.for_select,
+                   categories: current_account.categories.for_select,
                    subcategories: []
                  },
                  status: :unprocessable_entity
@@ -76,8 +76,8 @@ class ExpensesController < ApplicationController
       render :edit,
              locals: {
                expense:,
-               categories: Category.for_select,
-               subcategories: Subcategory.from_category_select(expense.category_id)
+               categories: current_account.categories.for_select,
+               subcategories: expense.subcategories.for_select
              },
              status: :unprocessable_entity
     end
