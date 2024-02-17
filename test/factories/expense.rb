@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :expense do
+    account
     name { "renta departamento" }
     amount { 10_000 }
   end

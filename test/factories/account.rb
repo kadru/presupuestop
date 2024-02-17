@@ -6,6 +6,31 @@ FactoryBot.define do
     password { "verysecretpassword" }
     status { :verified }
 
+    trait :recently_password_reset do
+      after(:build) do |account, _context|
+        account.build_password_reset_key(
+          key: SecureRandom.alphanumeric(10),
+          deadline: 24.hours.from_now,
+          email_last_sent: 0.1.seconds.ago
+        )
+      end
+    end
+
+    trait :with_expenses do
+      transient do
+        expenses_count { 1 }
+      end
+
+      after(:create) do |account, context|
+        category = create(:category_with_subcategories, account:)
+        create_list(:expense,
+                    context.expenses_count,
+                    account:,
+                    category:,
+                    subcategory: category.subcategories.last)
+      end
+    end
+
     factory :unverified_account do
       status { :unverified }
 

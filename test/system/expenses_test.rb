@@ -3,6 +3,11 @@
 require "application_system_test_case"
 
 class SpentsTest < ApplicationSystemTestCase
+  def setup
+    @account = create(:account)
+    login email: @account.email, password: @account.password
+  end
+
   test "visiting the index" do
     create_expense
     visit expenses_url
@@ -24,7 +29,7 @@ class SpentsTest < ApplicationSystemTestCase
   end
 
   test "should create expense" do
-    create(:category_with_subcategories)
+    create(:category_with_subcategories, account: @account)
 
     visit expenses_url
     click_on "new expense"
@@ -44,8 +49,8 @@ class SpentsTest < ApplicationSystemTestCase
   end
 
   test "when creating with empty data then should show a error message" do
-    category = Category.create! name: "vivienda"
-    Subcategory.create! name: "renta", category_id: category.id
+    category = @account.categories.create! name: "vivienda"
+    category.subcategories.create! name: "renta", category_id: category.id
 
     visit expenses_url
     click_on "new expense"
@@ -105,8 +110,13 @@ class SpentsTest < ApplicationSystemTestCase
   private
 
   def create_expense
-    category = create(:category_with_subcategories)
+    category = create(:category_with_subcategories, account: @account)
 
-    create(:expense, category:, subcategory: category.subcategories.last)
+    @account.expenses.create!(
+      name: "renta departamento",
+      amount: 10_000,
+      category:,
+      subcategory: category.subcategories.last
+    )
   end
 end

@@ -2,7 +2,10 @@
 
 # Give access to subcategories that belongs to a particular category
 class SubcategoriesController < ApplicationController
+  before_action :authenticate
+
   def index
-    render json: Subcategory.from_category(params.require(:category_id))
+    category = current_account.categories.find params.require(:category_id)
+    render json: category.subcategories
   end
 end

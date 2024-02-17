@@ -2,55 +2,59 @@
 
 # Manage expenses
 class ExpensesController < ApplicationController
+  before_action :authenticate
+
   # GET /expenses
   def index
     render :index,
            locals: {
-             expenses: Expense.ordered_with_category_subcategory,
+             expenses: current_account.expenses_ordered_with_category_subcategory,
              new_expense: Expense.new,
-             categories: Category.for_select,
+             categories: current_account.categories.for_select,
              subcategories: []
            }
   end
 
   # GET /expenses/new
   def new
-    @expense = Expense.new
     render :new,
            locals: {
-             expense: Expense.new,
-             categories: Category.for_select,
+             expense: current_account.expenses.build,
+             categories: current_account.categories.for_select,
              subcategories: []
            }
   end
 
   # GET /expenses/1/edit
   def edit
-    expense = Expense.find params[:id]
+    expense = current_account.expenses.find params[:id]
     render :edit,
            locals: {
              expense:,
-             categories: Category.for_select,
-             subcategories: Subcategory.from_category_select(expense.category_id)
+             categories: current_account.categories.for_select,
+             subcategories: expense.subcategories.for_select
            }
   end
 
   # POST /expenses
   def create
-    expense = Expense.new(expense_params)
+    expense = current_account.expenses.build(expense_params)
 
     respond_to do |format|
       if expense.save
-        format.html { redirect_to spents_path, notice: t(".successfully_created") }
         format.turbo_stream do
-          render :create, locals: { expense:, new_expense: Expense.new }
+          render :create,
+                 locals: {
+                   expense:,
+                   new_expense: Expense.new
+                 }
         end
       else
         format.html do
           render :new,
                  locals: {
                    expense:,
-                   categories: Category.for_select,
+                   categories: current_account.categories.for_select,
                    subcategories: []
                  },
                  status: :unprocessable_entity
@@ -61,18 +65,17 @@ class ExpensesController < ApplicationController
 
   # PATCH/PUT /expenses/1
   def update
-    expense = Expense.find params[:id]
+    expense = current_account.expenses.find params[:id]
     if expense.update(expense_params)
       respond_to do |format|
-        format.html { redirect_to spents_path, notice: t(".successfully_updated") }
         format.turbo_stream { render :update, locals: { expense: } }
       end
     else
       render :edit,
              locals: {
                expense:,
-               categories: Category.for_select,
-               subcategories: Subcategory.from_category_select(expense.category_id)
+               categories: current_account.categories.for_select,
+               subcategories: expense.subcategories.for_select
              },
              status: :unprocessable_entity
     end
@@ -80,7 +83,7 @@ class ExpensesController < ApplicationController
 
   # DELETE /expenses/1
   def destroy
-    expense = Expense.find params[:id]
+    expense = current_account.expenses.find params[:id]
     expense.destroy
 
     respond_to do |format|

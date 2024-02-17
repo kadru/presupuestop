@@ -6,6 +6,8 @@ class ExpenseTest < ActiveSupport::TestCase
   context "associations" do
     should belong_to(:category)
     should belong_to(:subcategory)
+    should belong_to(:account)
+    should have_many(:subcategories).through(:category)
   end
 
   context "validations" do
@@ -54,5 +56,22 @@ class ExpenseTest < ActiveSupport::TestCase
 
   describe "#category_blank?" do
     should delegate_method(:blank?).to(:category).with_prefix
+  end
+
+  describe "#subcategories#for_select" do
+    should "returns categories to use for select options tag" do
+      account = create(:account)
+      category = create(:category, account:)
+      subcategory = category.subcategories.create! name: "renta"
+      expense = create(:expense,
+                       account:,
+                       category:,
+                       subcategory:)
+
+      assert_equal [
+        [subcategory.name,
+         subcategory.id]
+      ], expense.subcategories.for_select
+    end
   end
 end
