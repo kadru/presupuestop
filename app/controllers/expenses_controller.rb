@@ -42,7 +42,6 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if expense.save
-        format.html { redirect_to spents_path, notice: t(".successfully_created") }
         format.turbo_stream do
           render :create,
                  locals: {
@@ -69,7 +68,6 @@ class ExpensesController < ApplicationController
     expense = current_account.expenses.find params[:id]
     if expense.update(expense_params)
       respond_to do |format|
-        format.html { redirect_to spents_path, notice: t(".successfully_updated") }
         format.turbo_stream { render :update, locals: { expense: } }
       end
     else
