@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :expenses, except: %i[show]
-  resources :categories, only: [] do
+  resources :categories, only: %i[index destroy] do
     resources :subcategories, only: [:index]
   end
   get "profile" => "profile#show"

@@ -12,6 +12,7 @@ module ActiveSupport
 
     class << self
       alias describe context
+      alias it should
     end
     # Add more helper methods to be used by all tests here...
 

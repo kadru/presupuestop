@@ -35,6 +35,9 @@ en:
         restrict_dependent_destroy:
           has_one: Cannot delete record because a dependent %{record} exists
           has_many: Cannot delete record because dependent %{record} exist
+    attributes:
+      category:
+        budget: budget
   date:
     abbr_day_names:
     - Sun
@@ -248,14 +251,21 @@ en:
       short: "%d %b %H:%M"
     pm: pm
 
+  resource:
+    title:
+      expenses: Expenses
+      categories: Categories
+    description:
+      expenses: TODO
+      categories: TODO
   # views
-  titles:
-    expenses: Expenses
-  descriptions:
-    expenses: TODO
   rodauth:
     login_form_footer:
       dont_have_account: Don't have an account?
+  categories:
+    category:
+     edit: edit
+     delete: delete
 
   #controllers
   expenses:

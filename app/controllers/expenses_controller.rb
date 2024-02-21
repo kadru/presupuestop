@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Manage expenses
-class ExpensesController < ApplicationController
+class ExpensesController < AuthenticatedController
   before_action :authenticate
 
   # GET /expenses

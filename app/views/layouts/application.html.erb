@@ -27,8 +27,8 @@
       <div class="sidebar pure-u-1 pure-u-md-1-5">
         <div class="nav-menu-wrapper">
           <header class="header">
-          <h2 class="brand-title"> <%= t("titles.expenses") %></h1>
-          <h3 class="brand-tagline"> <%= t("descriptions.expenses")%> </h2>
+          <h2 class="brand-title">  <%= resource_title %></h1>
+          <h3 class="brand-tagline"><%= resource_description %></h2>
           <a id="toggle-menu"
              href="javascript:void(0);"
              data-action="click->toggle#toggle">
@@ -44,6 +44,9 @@
             <ul class="nav-list">
               <li class="nav-item">
                 <%= link_to t("links.expenses"), expenses_path, class: "pure-button" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to t("links.categories"), categories_path, class: "pure-button" %>
               </li>
             </ul>
           </nav>
@@ -75,12 +78,4 @@
       </div>
     </div>
   </body>
-
-  <script>
-    function myFunction() {
-      var x = document.getElementById("menu");
-      x.classList.toggle("active");
-      document.getElementById("layout").classList.toggle("active")
-    }
-  </script>
 </html>

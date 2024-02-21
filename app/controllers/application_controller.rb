@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
   private
 
+  # @return [Account]
   def current_account
     rodauth.rails_account
   end
