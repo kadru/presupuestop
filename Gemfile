@@ -75,6 +75,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+  gem "minitest-focus", "~> 1.4"
   gem "selenium-webdriver"
   gem "shoulda", "5.0.0.rc1"
 end

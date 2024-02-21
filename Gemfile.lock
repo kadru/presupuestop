@@ -145,6 +145,8 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.20.0)
+    minitest-focus (1.4.0)
+      minitest (>= 4, < 6)
     msgpack (1.7.2)
     mutex_m (0.2.0)
     net-imap (0.4.9)
@@ -349,6 +351,7 @@ DEPENDENCIES
   factory_bot_rails
   importmap-rails
   jbuilder
+  minitest-focus (~> 1.4)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.2)
