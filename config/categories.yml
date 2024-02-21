@@ -1,0 +1,112 @@
+production:
+  - :name: vivienda
+    :subcategories:
+    - :name: renta
+    - :name: hipoteca
+    - :name: impuestos a la vivienda
+    - :name: reparaciones y mantenimiento
+    - :name: costos de asociacion
+  - :name: caridad
+    :subcategories:
+    - :name: impuestos
+    - :name: donaciones y ofrendas
+  - :name: seguros
+    :subcategories:
+    - :name: vida
+    - :name: gastos médicos
+    - :name: casa (inmueble y/o contenidos)
+    - :name: auto
+    - :name: discapacidad
+    - :name: robo
+    - :name: cuidado a largo plazo
+  - :name: servicios
+    :subcategories:
+    - :name: electricidad
+    - :name: gas
+    - :name: agua
+    - :name: recolección de residuos
+    - :name: celular
+    - :name: internet
+    - :name: cable
+  - :name: vestimenta
+    :subcategories:
+    - :name: adultos
+    - :name: niños
+    - :name: limpieza
+  - :name: personal
+    :subcategories:
+    - :name: cuidado de niños
+    - :name: artículo de aseo personal
+    - :name: cosméticos y aseo del cabello
+    - :name: educación
+    - :name: libros y utencilios
+    - :name: pensión alimenticia
+    - :name: manutención hijos
+    - :name: subscripciones
+    - :name: costos de organización
+    - :name: regalos
+    - :name: reemplazo de muebles
+    - :name: dinero bolsillo 1
+    - :name: dinero bolsillo 2
+    - :name: suministros para bebé
+    - :name: musica y tecnología
+    - :name: varios
+    - :name: contador
+    - :name: otros gastos personales 1
+    - :name: otros gastos personales 2
+  - :name: alimentación
+    :subcategories:
+    - :name: despensa
+    - :name: restaurantes y otros
+  - :name: transporte
+    :subcategories:
+    - :name: gasolina y aceite
+    - :name: reparaciones y llantas
+    - :name: licencia e impuestos
+    - :name: estacionamiento y casetas
+    - :name: transporte público y taxis
+  - :name: ahorros
+    :subcategories:
+    - :name: fondo de emergencias
+    - :name: fondo para el retiro
+    - :name: fondo para la educación
+  - :name: salud
+    :subcategories:
+    - :name: medicamentos
+    - :name: doctor
+    - :name: dentista
+    - :name: oculista
+    - :name: suplementos alimenticios
+    - :name: suministros médicos
+    - :name: otros gastos de salud
+  - :name: recreación
+    :subcategories:
+    - :name: entretenimiento
+    - :name: vacaciones
+  - :name: deuda
+    :subcategories:
+    - :name: crédito automotriz 1
+    - :name: tarjeta de crédito 1
+    - :name: crédito de estudio 1
+    - :name: crédito personal 1
+    - :name: otra deuda 1
+
+development:
+  - :name: vivienda
+    :subcategories:
+    - :name: renta
+    - :name: hipoteca
+    - :name: impuestos a la vivienda
+    - :name: reparaciones y mantenimiento
+    - :name: costos de asociacion
+
+  - :name: caridad
+    :subcategories:
+    - :name: impuestos
+    - :name: donaciones y ofrendas
+
+test:
+  - :name: vivienda
+    :subcategories:
+    - :name: renta
+
