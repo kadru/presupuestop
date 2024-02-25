@@ -9,6 +9,25 @@ class CategoriesController < AuthenticatedController
            }
   end
 
+  def new
+    render :new,
+           locals: {
+             category: current_account.categories.build
+           }
+  end
+
+  def create
+    category = current_account.categories.build category_params
+    if category.save
+      redirect_to categories_path, notice: t(".created")
+    else
+      render :new,
+             locals: {
+               category:
+             }
+    end
+  end
+
   def destroy
     category = current_account.categories.find params[:id]
     category.destroy
@@ -20,5 +39,18 @@ class CategoriesController < AuthenticatedController
                locals: { category: }
       end
     end
+  end
+
+  private
+
+  def category_params
+    params
+      .require(:category)
+      .permit(:name,
+              :budget,
+              subcategories_attributes:
+              %i[id
+                 budget
+                 _destroy])
   end
 end

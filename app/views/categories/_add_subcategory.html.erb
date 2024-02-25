@@ -1,0 +1,6 @@
+<%# locals: (index:) %>
+<%= link_to t(".new_subcategory"),
+            new_subcategory_path(index: index),
+            data: { "turbo-stream" => true },
+            class: "pure-button",
+            id: "add-subcategory" %>

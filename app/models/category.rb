@@ -5,4 +5,8 @@ class Category < ApplicationRecord
   belongs_to :account
   has_many :expenses, dependent: :nullify
   has_many :subcategories, dependent: :destroy
+
+  accepts_nested_attributes_for :subcategories,
+                                allow_destroy: true,
+                                reject_if: :all_blank
 end

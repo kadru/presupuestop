@@ -1,0 +1,14 @@
+<%# locals: (category:, index:) %>
+<%= fields model: category do |form| %>
+  <%= form.fields_for :subcategories, child_index: index do |subcategory_form| %>
+    <%= turbo_stream.replace "add-subcategory",
+                             partial: "categories/add_subcategory",
+                             locals: {
+                               index: index.to_i + 1 } %>
+    <%= turbo_stream.append "nested-subcategories",
+                            partial: "subcategories/form",
+                            locals: {
+                              form: subcategory_form
+                            } %>
+  <% end %>
+<% end %>

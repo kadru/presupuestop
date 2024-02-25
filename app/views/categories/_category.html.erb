@@ -4,7 +4,7 @@
       <div>
         <%= category.name %>
       </div>
-       <%= category.class.human_attribute_name(:budget) %>: <%= category.budget %>
+       <%= category.class.human_attribute_name(:budget) %>: <%= number_to_currency category.budget %>
     </div>
     <div class="card-right">
       <%= link_to t(".edit"),

@@ -35,8 +35,14 @@ en:
         restrict_dependent_destroy:
           has_one: Cannot delete record because a dependent %{record} exists
           has_many: Cannot delete record because dependent %{record} exist
+    models:
+      category: Category
     attributes:
       category:
+        name: name
+        budget: budget
+      subcategory:
+        name: name
         budget: budget
   date:
     abbr_day_names:
@@ -187,6 +193,8 @@ en:
         create: add expense
         update: update expense
         submit: save expense
+      category:
+        create: save
   number:
     currency:
       format:
@@ -266,6 +274,16 @@ en:
     category:
      edit: edit
      delete: delete
+    add_subcategory:
+      new_subcategory: add subcategory
+    index:
+     new_category: add category
+    created: Category saved!
+    form:
+      subcategories: Subcategories
+  subcategories:
+    form:
+      remove_submit: remove
 
   #controllers
   expenses:

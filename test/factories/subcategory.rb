@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :subcategory do
     name { "renta" }
+    budget { 1_000 }
   end
 end

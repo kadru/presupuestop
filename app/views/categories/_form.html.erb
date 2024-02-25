@@ -1,0 +1,37 @@
+<%# locals: (category:) %>
+<%= form_with(model: category,
+              data: {
+                controller: :addition
+              },
+              class: "pure-form pure-form-stacked",) do |form| %>
+  <div class="pure-control-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "pure-input-1" %>
+  </div>
+  <div class="pure-control-group">
+    <%= form.label :budget %>
+    <%= form.number_field :budget,
+                          data: {
+                            "addition-target" => :sum
+                          },
+                          class: "pure-input-1",
+                          readonly: true %>
+  </div>
+  
+  <h4> <%= t(".subcategories") %></h4>
+  <div class="pure-controls">
+    <%= render "add_subcategory",
+                index: category.subcategories.size %>
+  </div>
+
+  <%= turbo_frame_tag "nested-subcategories" do %>
+    <%= form.fields_for :subcategories do |subcategory_form| %>
+      <%= render "subcategories/form", form: subcategory_form %>
+    <% end %>
+  <% end %>
+
+  <br>
+  <div class="pure-controls">
+    <%= form.submit class: "pure-button pure-button-primary pure-input-1" %>
+  </div>
+<% end %>

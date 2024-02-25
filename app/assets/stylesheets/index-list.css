@@ -1,0 +1,4 @@
+.index-list {
+  overflow-y: auto;
+  max-height: 67vh;
+}

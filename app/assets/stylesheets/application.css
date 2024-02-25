@@ -58,3 +58,7 @@ table.pure-table.compact-table th {
   display: flex;
   justify-content: flex-end;
 }
+
+.center-flex {
+  justify-content: center;
+}

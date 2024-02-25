@@ -1,4 +1,10 @@
 <%# locals: (categories:) %>
 <div class="pure-g">
-  <%= render categories %>
+  <div class="index-list">
+    <%= render categories %>
+  </div>
+
+  <div class="pure-u-1-3">
+    <%= link_to t(".new_category"), new_category_path, class: "pure-button" %>
+  </div>
 </div>
