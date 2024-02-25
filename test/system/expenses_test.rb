@@ -73,7 +73,7 @@ class SpentsTest < ApplicationSystemTestCase
 
     visit expenses_url
     within "tr#expense_#{expense.id}" do
-      click_button "edit"
+      click_on "edit"
     end
 
     fill_in "expense[name]", with: "renta"
@@ -95,7 +95,7 @@ class SpentsTest < ApplicationSystemTestCase
 
     visit expenses_url
     within "tr#expense_#{expense.id}" do
-      click_button "edit"
+      click_on "edit"
     end
 
     fill_in "expense[name]", with: ""
@@ -110,7 +110,7 @@ class SpentsTest < ApplicationSystemTestCase
     visit expenses_url
 
     within "tr#expense_#{expense.id}" do
-      click_button "delete"
+      click_on "delete"
     end
 
     assert_no_css "#spent_#{expense.id}"

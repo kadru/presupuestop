@@ -13,7 +13,7 @@ require:
  - rubocop-performance
  - rubocop-thread_safety
  - rubocop-minitest
-
+ - rubocop-capybara
 AllCops:
   NewCops: enable
 
