@@ -13,7 +13,9 @@ require:
  - rubocop-performance
  - rubocop-thread_safety
  - rubocop-minitest
-
+ - rubocop-capybara
+ - rubocop-factory_bot
+ - rubocop-rake
 AllCops:
   NewCops: enable
 
