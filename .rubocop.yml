@@ -15,6 +15,7 @@ require:
  - rubocop-minitest
  - rubocop-capybara
  - rubocop-factory_bot
+ - rubocop-rake
 AllCops:
   NewCops: enable
 
