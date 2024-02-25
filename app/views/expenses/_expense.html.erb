@@ -20,6 +20,13 @@
          class="popover-container"
          popover
          data-controller="popover-form">
+      <div class="to-right">
+        <button class="icon-button" popovertarget="popoverEdit<%=  expense.id %>" popovertargetaction="hide">
+          <span class="material-symbols-outlined to-right">
+            close
+          </span>
+        </button>
+      </div>
       <%= turbo_frame_tag expense, src: edit_expense_path(expense), loading: :lazy %>
     </div>
   </td>
