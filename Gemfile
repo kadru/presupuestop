@@ -53,6 +53,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
+  gem "rubocop-factory_bot", require: false
   gem "rubocop-minitest", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
