@@ -1,4 +1,11 @@
+<%# locals: (expense:, new_expense:, categories:, subcategories:) %>
 <%= turbo_stream.prepend "expenses_tbody",
                          partial: "expenses/expense",
                          locals: { expense: expense } %>
-<%= turbo_stream.update new_expense, "" %>
+<%= turbo_stream.replace new_expense,
+                         partial: "expenses/form",
+                         locals: {
+                           expense: new_expense,
+                           categories: categories,
+                           subcategories: subcategories
+                         } %>

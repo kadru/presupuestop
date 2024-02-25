@@ -39,6 +39,7 @@ class ExpensesController < ApplicationController
   # POST /expenses
   def create
     expense = current_account.expenses.build(expense_params)
+    categories_for_select = current_account.categories.for_select
 
     respond_to do |format|
       if expense.save
@@ -46,7 +47,9 @@ class ExpensesController < ApplicationController
           render :create,
                  locals: {
                    expense:,
-                   new_expense: Expense.new
+                   new_expense: Expense.new,
+                   categories: categories_for_select,
+                   subcategories: []
                  }
         end
       else
@@ -54,7 +57,7 @@ class ExpensesController < ApplicationController
           render :new,
                  locals: {
                    expense:,
-                   categories: current_account.categories.for_select,
+                   categories: categories_for_select,
                    subcategories: []
                  },
                  status: :unprocessable_entity

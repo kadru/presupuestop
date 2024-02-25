@@ -46,6 +46,15 @@ class SpentsTest < ApplicationSystemTestCase
       assert_text "vivienda"
       assert_text "renta"
     end
+
+    # should render a empty form after create a expense
+    click_on "new expense"
+    within "#popoverNew" do
+      assert_field "expense[name]", with: ""
+      assert_field "expense[amount_unit]", with: ""
+      assert_field "expense[category_id]", with: ""
+      assert_field "expense[subcategory_id]", with: ""
+    end
   end
 
   test "when creating with empty data then should show a error message" do
