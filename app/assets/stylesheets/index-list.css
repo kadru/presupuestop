@@ -1,4 +1,10 @@
 .index-list {
   overflow-y: auto;
-  max-height: 67vh;
+  max-height: 62vh;
+}
+
+@media(min-height: 42rem) {
+  .index-list {
+    max-height: 90vh;
+  }
 }

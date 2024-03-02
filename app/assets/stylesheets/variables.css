@@ -26,4 +26,7 @@
   --font-size-xxl: 1.5rem;
   --font-size-xxxl: 2rem;
   --font-size-xxxxl: 2.5rem;
+
+  /* tested on iphone 14 prox max */
+  --min-vertical-height: 42rem
 }

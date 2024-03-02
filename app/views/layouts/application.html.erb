@@ -28,7 +28,6 @@
         <div class="nav-menu-wrapper">
           <header class="header">
           <h2 class="brand-title">  <%= resource_title %></h1>
-          <h3 class="brand-tagline"><%= resource_description %></h2>
           <a id="toggle-menu"
              href="javascript:void(0);"
              data-action="click->toggle#toggle">
@@ -64,17 +63,6 @@
         <main>
           <%= yield %>
         </main>
-        <footer class="footer">
-         <div class="pure-menu pure-menu-horizontal">
-           <ul>
-             <li class="pure-menu-item">
-               <a href="https://github.com/kadru/presupuestop" target="_blank" class="pure-menu-link">
-                 GitHub
-               </a>
-             </li>
-           </ul>
-         </div>
-        </footer>
       </div>
     </div>
   </body>
