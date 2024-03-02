@@ -16,12 +16,31 @@ class CategoriesController < AuthenticatedController
            }
   end
 
+  def edit
+    render :edit,
+           locals: {
+             category: current_account_find_category
+           }
+  end
+
   def create
     category = current_account.categories.build category_params
     if category.save
       redirect_to categories_path, notice: t(".created")
     else
       render :new,
+             locals: {
+               category:
+             }
+    end
+  end
+
+  def update
+    category = current_account_find_category
+    if category.update category_params
+      redirect_to categories_path, notice: t(".updated")
+    else
+      render :edit,
              locals: {
                category:
              }
@@ -52,5 +71,9 @@ class CategoriesController < AuthenticatedController
               %i[id
                  budget
                  _destroy])
+  end
+
+  def current_account_find_category
+    current_account.categories.find(params[:id])
   end
 end

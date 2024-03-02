@@ -8,6 +8,10 @@ export default class extends Controller {
     this.sumTarget.value = this.#sumAddends();
   }
 
+  addendTargetDisconnected(_element) {
+    this.add()
+  }
+
   #sumAddends() {
     return this.addendTargets.map((addendField) => {
       const num = parseInt(addendField.value)
@@ -15,6 +19,6 @@ export default class extends Controller {
         return 0;
       else
         return num;
-    }).reduce((accum, addend) => accum + addend);
+    }).reduce((accum, addend) => accum + addend, 0);
   }
 }

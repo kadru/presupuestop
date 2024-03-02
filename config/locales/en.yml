@@ -195,6 +195,7 @@ en:
         submit: save expense
       category:
         create: save
+        update: update
   number:
     currency:
       format:
@@ -279,6 +280,7 @@ en:
     index:
      new_category: add category
     created: Category saved!
+    updated: Category updated!
     form:
       subcategories: Subcategories
   subcategories:

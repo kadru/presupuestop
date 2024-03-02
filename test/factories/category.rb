@@ -13,6 +13,10 @@ FactoryBot.define do
       subcategories do
         Array.new(subcategories_count) { association :subcategory }
       end
+
+      trait :budget1000 do
+        budget { 1_000 }
+      end
     end
   end
 end

@@ -44,4 +44,24 @@ class CategoriesTest < ApplicationSystemTestCase
 
     assert_no_css "#category_#{category.id}"
   end
+
+  test "should update a category" do
+    create(:category_with_subcategories, :budget1000, account: @account)
+    category = @account.categories.last
+
+    visit edit_category_path(category)
+
+    assert_field "category[budget]", with: "1000"
+
+    # remove subcategory
+    within "#subcategory_0" do
+      click_on translate!("subcategories.form.remove_submit")
+    end
+
+    assert_field "category[budget]", with: "0"
+
+    click_on translate!("helpers.submit.category.update")
+
+    assert_text translate!("categories.updated")
+  end
 end
