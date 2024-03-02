@@ -9,6 +9,8 @@ class CategoryTest < ActiveSupport::TestCase
     should belong_to(:account)
   end
 
+  should accept_nested_attributes_for(:subcategories).allow_destroy(true)
+
   describe ".order_by_name" do
     it "should return categories ordere by name" do
       account = create(:account)
