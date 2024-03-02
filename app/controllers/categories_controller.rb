@@ -5,7 +5,7 @@ class CategoriesController < AuthenticatedController
   def index
     render :index,
            locals: {
-             categories: current_account.categories
+             categories: current_account.categories.order_by_name
            }
   end
 

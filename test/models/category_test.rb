@@ -9,6 +9,16 @@ class CategoryTest < ActiveSupport::TestCase
     should belong_to(:account)
   end
 
+  describe ".order_by_name" do
+    it "should return categories ordere by name" do
+      account = create(:account)
+      category_aba = create(:category, account:, name: "aba")
+      category_zorg = create(:category, account:, name: "Zorg")
+
+      assert_equal Category.order_by_name, [category_aba, category_zorg]
+    end
+  end
+
   describe "#destroy" do
     it "should nullify expenses owned by category destroyed" do
       account = create(:account)
