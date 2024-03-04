@@ -18,7 +18,7 @@ class CategoriesTest < ApplicationSystemTestCase
     assert_text "budget: $0.00"
   end
 
-  test "should add a create a category" do
+  test "should create a category" do
     visit categories_path
     click_on "add category"
     fill_in "category[name]", with: "a category name"
@@ -32,6 +32,15 @@ class CategoriesTest < ApplicationSystemTestCase
     assert_text translate!("categories.created")
     assert_text "a category name"
     assert_text "budget: $1,000.00"
+  end
+
+  test "when subcategory has missing name should show error message" do
+    visit new_category_path
+    fill_in "category[name]", with: "a category name"
+    click_on translate!("categories.add_subcategory.new_subcategory")
+    click_on translate!("helpers.submit.category.create")
+
+    assert_text translate!("errors.messages.blank")
   end
 
   test "should destroy a category" do
@@ -63,5 +72,16 @@ class CategoriesTest < ApplicationSystemTestCase
     click_on translate!("helpers.submit.category.update")
 
     assert_text translate!("categories.updated")
+  end
+
+  test "when updating a category with invalid name should show an error message" do
+    create(:category, account: @account)
+    category = @account.categories.last
+
+    visit edit_category_path(category)
+    fill_in "category[name]", with: ""
+    click_on translate!("helpers.submit.category.update")
+
+    assert_text translate!("errors.messages.blank")
   end
 end

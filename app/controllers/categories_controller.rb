@@ -31,7 +31,8 @@ class CategoriesController < AuthenticatedController
       render :new,
              locals: {
                category:
-             }
+             },
+             status: :unprocessable_entity
     end
   end
 
@@ -43,7 +44,8 @@ class CategoriesController < AuthenticatedController
       render :edit,
              locals: {
                category:
-             }
+             },
+             status: :unprocessable_entity
     end
   end
 
@@ -69,6 +71,7 @@ class CategoriesController < AuthenticatedController
               :budget,
               subcategories_attributes:
               %i[id
+                 name
                  budget
                  _destroy])
   end

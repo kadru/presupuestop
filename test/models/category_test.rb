@@ -9,6 +9,13 @@ class CategoryTest < ActiveSupport::TestCase
     should belong_to(:account)
   end
 
+  describe "validations" do
+    it validate_presence_of(:name)
+    it validate_length_of(:name).is_at_most(255)
+
+    it validate_numericality_of(:budget).only_integer
+  end
+
   should accept_nested_attributes_for(:subcategories).allow_destroy(true)
 
   describe ".order_by_name" do

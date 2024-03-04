@@ -264,9 +264,6 @@ en:
     title:
       expenses: Expenses
       categories: Categories
-    description:
-      expenses: TODO
-      categories: TODO
   # views
   rodauth:
     login_form_footer:

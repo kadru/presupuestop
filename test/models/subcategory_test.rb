@@ -3,7 +3,8 @@
 require "test_helper"
 
 class SubcategoryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  describe "validations" do
+    it validate_presence_of(:name)
+    it validate_numericality_of(:budget).only_integer
+  end
 end
