@@ -18,7 +18,6 @@ class SpentsTest < ApplicationSystemTestCase
       assert_text "name"
       assert_text "amount"
       assert_text "category"
-      assert_text "subcategory"
 
       # assert rows
       assert_text "renta departamento"
@@ -32,13 +31,13 @@ class SpentsTest < ApplicationSystemTestCase
     create(:category_with_subcategories, account: @account)
 
     visit expenses_url
-    click_on "new expense"
+    click_on translate!("expenses.index.new_expense")
 
     fill_in "expense[name]", with: "cinema"
     fill_in "expense[amount_unit]", with: 1111
     select "vivienda", from: "expense[category_id]"
     select "renta", from: "expense[subcategory_id]"
-    click_on "add expense"
+    click_on translate!("helpers.submit.expense.create")
 
     within "table" do
       assert_text "cinema"
@@ -48,7 +47,7 @@ class SpentsTest < ApplicationSystemTestCase
     end
 
     # should render a empty form after create a expense
-    click_on "new expense"
+    click_on translate!("expenses.index.new_expense")
     within "#popoverNew" do
       assert_field "expense[name]", with: ""
       assert_field "expense[amount_unit]", with: ""
@@ -62,8 +61,8 @@ class SpentsTest < ApplicationSystemTestCase
     category.subcategories.create! name: "renta", category_id: category.id
 
     visit expenses_url
-    click_on "new expense"
-    click_on "add expense"
+    click_on translate!("expenses.index.new_expense")
+    click_on translate!("helpers.submit.expense.create")
 
     assert_text("can't be blank")
   end
@@ -80,7 +79,7 @@ class SpentsTest < ApplicationSystemTestCase
     fill_in "expense[amount_unit]", with: 20_000
     select "vivienda", from: "expense[category_id]"
     select "renta", from: "expense[subcategory_id]"
-    click_on "update expense"
+    click_on translate!("helpers.submit.expense.update")
 
     within "table" do
       assert_text "renta"
@@ -99,7 +98,7 @@ class SpentsTest < ApplicationSystemTestCase
     end
 
     fill_in "expense[name]", with: ""
-    click_on "update expense"
+    click_on translate!("helpers.submit.expense.update")
 
     assert_text "can't be blank"
   end

@@ -38,6 +38,11 @@ en:
     models:
       category: Category
     attributes:
+      expense:
+        name: name
+        amount_unit: amount
+        category_id: category
+        subcategory_id: subcategory
       category:
         name: name
         budget: budget
@@ -190,8 +195,8 @@ en:
       submit: Save %{model}
       update: Update %{model}
       expense:
-        create: add expense
-        update: update expense
+        create: save
+        update: update
         submit: save expense
       category:
         create: save
@@ -292,7 +297,7 @@ en:
       category: category
       subcategory: subcategory
       actions: actions
-      new_expense: new expense
+      new_expense: add expense
     expense:
       delete: delete
       edit: edit

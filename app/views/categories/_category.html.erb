@@ -7,14 +7,22 @@
        <%= category.class.human_attribute_name(:budget) %>: <%= number_to_currency category.budget %>
     </div>
     <div class="card-right">
-      <%= link_to t(".edit"),
-                    edit_category_path(category),
-                    class: "pure-button button-small" %>
+      <%= link_to edit_category_path(category),
+                  title: t(".edit"),
+                  class: "pure-button button-small"  do %>
+        <span class="material-symbols-outlined">
+          edit
+        </span>
+      <% end %>
       <br>
-      <%= button_to t(".delete"),
-                    category_path(category),
+      <%= button_to category_path(category),
                     method: :delete,
-                    class: "pure-button button-small" %>
+                    title: t(".delete"),
+                    class: "pure-button button-small" do %>
+        <span class="material-symbols-outlined">
+          delete
+        </span>
+      <% end %>
     </div>
   </div>
 </div>
