@@ -8,10 +8,11 @@ module ActiveSupport
   class TestCase
     include FactoryBot::Syntax::Methods
     # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors, with: :threads)
+    parallelize(workers: :number_of_processors)
 
     class << self
       alias describe context
+      alias it should
     end
     # Add more helper methods to be used by all tests here...
 

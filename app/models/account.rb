@@ -16,4 +16,14 @@ class Account < ApplicationRecord
       pluck(:name, :id)
     end
   end
+
+  def create_categories!
+    Config.categories.each do |category_data|
+      categories.create!(name: category_data.fetch(:name)).then do |category|
+        category_data.fetch(:subcategories).each do |subcategory_data|
+          category.subcategories.create!(name: subcategory_data.fetch(:name))
+        end
+      end
+    end
+  end
 end

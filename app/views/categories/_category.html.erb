@@ -1,0 +1,20 @@
+<div id="<%= dom_id(category) %>" class="pure-u-1 pure-u-md-16-24">
+  <div class="card">
+    <div class="card-left">
+      <div>
+        <%= category.name %>
+      </div>
+       <%= category.class.human_attribute_name(:budget) %>: <%= number_to_currency category.budget %>
+    </div>
+    <div class="card-right">
+      <%= link_to t(".edit"),
+                    edit_category_path(category),
+                    class: "pure-button button-small" %>
+      <br>
+      <%= button_to t(".delete"),
+                    category_path(category),
+                    method: :delete,
+                    class: "pure-button button-small" %>
+    </div>
+  </div>
+</div>

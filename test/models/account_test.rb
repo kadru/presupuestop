@@ -26,4 +26,17 @@ class AccountTest < ActiveSupport::TestCase
                      category.id]], account.categories.for_select
     end
   end
+
+  describe "#create_categories!" do
+    should "create default categories and subcategories" do
+      account = create(:account)
+
+      account.create_categories!
+
+      assert_equal 1, account.categories.size
+      account.categories.each do |category|
+        assert_equal 1, category.subcategories.size
+      end
+    end
+  end
 end

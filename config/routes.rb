@@ -2,9 +2,17 @@
 
 Rails.application.routes.draw do
   resources :expenses, except: %i[show]
-  resources :categories, only: [] do
-    resources :subcategories, only: [:index]
+  resources :categories, only: %i[index destroy new create edit update] do
+    resources :subcategories, only: %i[index]
   end
+
+  resources :subcategories, only: [], param: :index do
+    member do
+      get "/new" => "subcategories#new"
+      delete "(:id)" => "subcategories#delete", as: ""
+    end
+  end
+
   get "profile" => "profile#show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
