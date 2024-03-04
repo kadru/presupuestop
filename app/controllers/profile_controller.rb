@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 # show profile for current logged account
-class ProfileController < ApplicationController
-  before_action :authenticate
-
+class ProfileController < AuthenticatedController
   def show; end
 end
