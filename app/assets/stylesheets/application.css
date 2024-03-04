@@ -62,3 +62,7 @@ table.pure-table.compact-table th {
 .center-flex {
   justify-content: center;
 }
+
+main .material-symbols-outlined {
+  font-size: 1.3rem;
+}

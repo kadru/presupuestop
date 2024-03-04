@@ -7,7 +7,6 @@
         <th><%= t(".name") %></th>
         <th><%= t(".amount") %></th>
         <th><%= t(".category") %></th>
-        <th><%= t(".subcategory") %></th>
         <th><%= t(".actions") %></th>
       </tr>
     </thead>
@@ -21,7 +20,7 @@
 
 <%= button_tag t(".new_expense"),
                type: "button",
-               class: "pure-button pure-button-primary",
+               class: "pure-button pure-button-primary button-large",
                popovertarget: "popoverNew" %>
 
 <div id="popoverNew"

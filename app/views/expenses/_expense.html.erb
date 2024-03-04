@@ -3,19 +3,25 @@
   <td><%= number_to_currency(expense.amount_unit) %></td>
   <td>
     <%= expense.category_name %>
-  </td>
-  <td>
     <%= expense.subcategory_name %>
   </td>
-  <td>
-    <%= button_to t(".delete"),
-                  expense_path(expense),
-                  method: :delete,
-                  class: "pure-button" %>
-    <%= button_tag t(".edit"),
-                  type: :button,
+  <td class="actions">
+    <%= button_tag type: :button,
+                  title: t(".edit"),
                   class: "pure-button",
-                  popovertarget: "popoverEdit#{expense.id}" %>
+                  popovertarget: "popoverEdit#{expense.id}" do %>
+      <span class="material-symbols-outlined">
+        edit
+      </span>
+    <% end %>
+    <%= button_to expense_path(expense),
+                  method: :delete,
+                  title: t(".delete"),
+                  class: "pure-button" do %>
+      <span class="material-symbols-outlined">
+        delete
+      </span>
+    <% end %>
     <div id="popoverEdit<%=  expense.id %>"
          class="popover-container"
          popover
