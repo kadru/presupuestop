@@ -35,6 +35,10 @@ class SpentsTest < ApplicationSystemTestCase
 
     fill_in "expense[name]", with: "cinema"
     fill_in "expense[amount_unit]", with: 1111
+
+    # assert that inputmask in working
+    assert_field "expense[amount_unit]", with: "1111.00"
+
     select "vivienda", from: "expense[category_id]"
     select "renta", from: "expense[subcategory_id]"
     click_on translate!("helpers.submit.expense.create")

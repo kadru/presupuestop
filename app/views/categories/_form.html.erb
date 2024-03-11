@@ -10,9 +10,10 @@
   </div>
   <div class="pure-control-group">
     <%= form.label :budget %>
-    <%= form.number_field :budget,
+    <%= form.currency_field :budget,
                           data: {
-                            "addition-target" => :sum
+                            "addition-target" => :sum,
+                            "currency-digits-value": 0
                           },
                           class: "pure-input-1",
                           readonly: true %>

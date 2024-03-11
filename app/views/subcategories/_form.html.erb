@@ -6,10 +6,11 @@
   </div>
   <div class="pure-control-group">
     <%= form.label :budget %>
-    <%= form.number_field :budget,
+    <%= form.currency_field :budget,
                           data: {
                             "addition-target": "addend",
-                            action: "addition#add"
+                            action: "addition#add",
+                            "currency-digits-value": 0
                           },
                           class: "pure-input-1" %>
   </div>
