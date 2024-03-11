@@ -9,7 +9,9 @@
 
    <div class="pure-control-group">
      <%= form.label :amount_unit %>
-     <%= form.number_field :amount_unit, step: "0.01", class: "pure-input-1" %>
+     <%= form.currency_field :amount_unit,
+                             class: "pure-input-1" %>
+      
    </div>
 
    <div class="pure-control-group">
