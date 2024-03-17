@@ -11,4 +11,13 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     fill_in "password", with: password
     click_on "Login"
   end
+
+  def setup
+    Capybara.app_host = "http://localhost"
+    setup_virtual_auth
+  end
+
+  def setup_virtual_auth
+    page.driver.browser.add_virtual_authenticator(Selenium::WebDriver::VirtualAuthenticatorOptions.new)
+  end
 end

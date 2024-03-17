@@ -1,0 +1,49 @@
+<%= form_with url: rodauth.webauthn_remove_path,
+              method: :post,
+              id: "webauthn-remove-form",
+              class: "pure-form pure-form-stacked",
+              data: { turbo: false } do |form| %>
+  <% if rodauth.two_factor_modifications_require_password? %>
+    <div class="pure-control-group">
+      <%= form.label "password", rodauth.password_label %>
+      <%= form.password_field rodauth.password_param,
+                              value: "",
+                              id: "password",
+                              autocomplete: rodauth.password_field_autocomplete_value,
+                              required: true,
+                              class: "pure-input-1",
+                              aria: ({ invalid: true,
+                                       describedby: "password_error_message" } if rodauth.field_error(
+                                        rodauth.password_param)) %>
+      <%= content_tag(:span,
+                      rodauth.field_error(rodauth.password_param),
+                      class: "pure-form-message-inline warning",
+                      id: "password_error_message") if rodauth.field_error(rodauth.password_param) %>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <% (usage = rodauth.account_webauthn_usage).each do |id, last_use| %>
+      <div class="pure-control-group">
+        <%= form.label "webauthn-remove-#{id}", class: "pure-radio" do %>
+          <%= form.radio_button rodauth.webauthn_remove_param,
+                                id,
+                                id: "webauthn-remove-#{id}",
+                                aria: ({ invalid: true,
+                                         describedby: "webauthn_remove_error_message" } if rodauth.field_error(
+                                          rodauth.webauthn_remove_param)) %>
+          <%= "Last use: #{last_use}" %>
+        <% end %>
+        <%= content_tag(:span,
+                        rodauth.field_error(rodauth.webauthn_remove_param),
+                        class: "pure-form-message-inline warning",
+                        id: "webauthn_remove_error_message") if (
+                          rodauth.field_error(rodauth.webauthn_remove_param) && id == usage.keys.last) %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <div class="pure-controls">
+    <%= form.submit rodauth.webauthn_remove_button, class: "pure-button pure-button-primary pure-u-1" %>
+  </div>
+<% end %>

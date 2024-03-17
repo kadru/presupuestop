@@ -90,3 +90,11 @@ en:
     verify_login_change_error_flash: Unable to verify email change
     verify_login_change_notice_flash: Your email change has been verified
     verify_login_change_page_title: Verify Email Change
+    two_factor_remove_heading: Remove Multifactor Authentication
+    two_factor_setup_heading: Setup Multifactor Authentication
+    two_factor_disable_link_text: Remove WebAuthn Authenticator
+    webauthn_setup_button: Setup WebAuthn Authentication
+    webauthn_setup_notice_flash: WebAuthn authentication is now setup
+    webauthn_remove_link_text: Remove WebAuthn Authenticator
+    webauthn_remove_button: Remove WebAuthn Authenticator
+    webauthn_remove_notice_flash: WebAuthn authenticator has been removed
