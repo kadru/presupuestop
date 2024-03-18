@@ -22,6 +22,11 @@
                       rodauth.close_account_route,
                       class: "pure-menu-link" %>
         </li>
+        <li class="pure-menu-list">
+          <%= link_to t("links.setup_webauthn"),
+                      rodauth.two_factor_manage_path,
+                      class: "pure-menu-link" %>
+        </li>
       </ul>
     </div>
   </div>

@@ -1,0 +1,31 @@
+
+<div class="pure-menu">
+  <span class="pure-menu-heading">
+    <%= rodauth.two_factor_setup_heading unless rodauth.two_factor_setup_links.empty? %>
+  </span>
+  <ul class="pure-menu-list rodauth-links rodauth-multifactor-setup-links">
+    <% rodauth.two_factor_setup_links.each do |_, link, text| %>
+      <li class="pure-menu-item">
+        <%= link_to text, link, class: "pure-menu-link" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="pure-menu">
+  <span class="pure-menu-heading">
+    <%= rodauth.two_factor_remove_heading unless rodauth.two_factor_remove_links.empty? %>
+  </span>
+  <ul class="pure-menu-list rodauth-links rodauth-multifactor-remove-links">
+    <% rodauth.two_factor_remove_links.each do |_, link, text| %>
+      <li class="pure-menu-item">
+        <%= link_to text, link, class: "pure-menu-link" %>
+      </li>
+    <% end %>
+    <% if rodauth.two_factor_remove_links.length > 1 %>
+      <li class="pure-menu-item">
+        <%= link_to rodauth.two_factor_disable_link_text, rodauth.two_factor_disable_path, class: "pure-menu-link" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

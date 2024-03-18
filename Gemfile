@@ -83,3 +83,4 @@ end
 
 gem "rodauth-i18n", "~> 0.7.1"
 gem "rodauth-rails", "~> 1.13"
+gem "webauthn", "~> 3.1"

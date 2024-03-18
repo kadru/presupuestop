@@ -7,12 +7,11 @@ class VerifyAccountTest < ApplicationSystemTestCase
     ApplicationMailer.deliveries.clear
   end
 
-  test "login with a unveryfied account after grace period, " do
+  test "login with a unveryfied account after grace period" do
     account = create(:unverified_account, :expired_grace_period)
 
     visit "/login"
     fill_in "email", with: account.email
-    fill_in "password", with: "verysecretpassword"
     click_on translate!("rodauth.login_button")
 
     assert_text translate!("rodauth.attempt_to_login_to_unverified_account_error_flash")

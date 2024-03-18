@@ -18,7 +18,10 @@ class RodauthMain < Rodauth::Rails::Auth
            :change_login,
            :verify_login_change,
            :close_account,
-           :i18n
+           :i18n,
+           :webauthn,
+           :webauthn_login,
+           :webauthn_autofill
 
     # See the Rodauth documentation for the list of available config options:
     # http://rodauth.jeremyevans.net/documentation.html
@@ -191,5 +194,14 @@ class RodauthMain < Rodauth::Rails::Auth
     # reset_password_deadline_interval Hash[hours: 6]
     # verify_login_change_deadline_interval Hash[days: 2]
     # remember_deadline_interval Hash[days: 30]
+
+    # webauthn
+    webauthn_authenticator_selection do
+      { "requireResidentKey" => false,
+        "userVerification" => webauthn_user_verification,
+        "authenticatorAttachment" => "all" }
+    end
+
+    webauthn_login_user_verification_additional_factor? true
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_17_041836) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_11_010728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -36,6 +36,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_17_041836) do
     t.string "key", null: false
     t.datetime "requested_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "email_last_sent", default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
+  create_table "account_webauthn_keys", primary_key: ["account_id", "webauthn_id"], force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "webauthn_id", null: false
+    t.string "public_key", null: false
+    t.integer "sign_count", null: false
+    t.datetime "last_use", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["account_id"], name: "index_account_webauthn_keys_on_account_id"
+  end
+
+  create_table "account_webauthn_user_ids", force: :cascade do |t|
+    t.string "webauthn_id", null: false
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -80,5 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_17_041836) do
   add_foreign_key "account_password_reset_keys", "accounts", column: "id"
   add_foreign_key "account_remember_keys", "accounts", column: "id"
   add_foreign_key "account_verification_keys", "accounts", column: "id"
+  add_foreign_key "account_webauthn_keys", "accounts"
+  add_foreign_key "account_webauthn_user_ids", "accounts", column: "id"
   add_foreign_key "categories", "accounts"
 end

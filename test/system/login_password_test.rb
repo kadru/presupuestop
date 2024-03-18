@@ -8,8 +8,9 @@ class LoginPasswordTest < ApplicationSystemTestCase
     visit "/login"
 
     fill_in "email", with: account.email
+    click_on translate!("rodauth.login_button")
     fill_in "password", with: "verysecretpassword"
-    click_on "Login"
+    click_on translate!("rodauth.login_button")
 
     assert_text "You have been logged in"
   end
