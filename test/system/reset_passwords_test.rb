@@ -27,6 +27,7 @@ class ResetPasswordsTest < ApplicationSystemTestCase
     assert_text translate!("rodauth.reset_password_notice_flash")
 
     fill_in "email", with: account.email
+    click_on translate!("rodauth.login_button")
     fill_in "password", with: "anewsecurepassword"
     click_on translate!("rodauth.login_button")
 

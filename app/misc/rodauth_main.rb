@@ -19,7 +19,9 @@ class RodauthMain < Rodauth::Rails::Auth
            :verify_login_change,
            :close_account,
            :i18n,
-           :webauthn
+           :webauthn,
+           :webauthn_login,
+           :webauthn_autofill
 
     # See the Rodauth documentation for the list of available config options:
     # http://rodauth.jeremyevans.net/documentation.html
@@ -196,8 +198,10 @@ class RodauthMain < Rodauth::Rails::Auth
     # webauthn
     webauthn_authenticator_selection do
       { "requireResidentKey" => false,
-        "userVerification" => "discouraged",
+        "userVerification" => webauthn_user_verification,
         "authenticatorAttachment" => "all" }
     end
+
+    webauthn_login_user_verification_additional_factor? true
   end
 end
