@@ -27,6 +27,28 @@ class AccountTest < ActiveSupport::TestCase
     end
   end
 
+  describe "#expenses_ordered_with_category_subcategory#by_month" do
+    it "returns expenses filtered by given month" do
+      account = create(:account)
+      category = create(:category_with_subcategories, account:)
+      expense_march = create(:expense,
+                             month: Date.new(2024, 3, 1),
+                             category:,
+                             account:,
+                             subcategory: category.subcategories.last)
+      create(:expense,
+             month: Date.new(2024, 2, 1),
+             category:,
+             account:,
+             subcategory: category.subcategories.last)
+
+      assert_equal [expense_march],
+                   account
+                     .expenses_ordered_with_category_subcategory
+                     .by_month(Date.new(2024, 3, 1))
+    end
+  end
+
   describe "#create_categories!" do
     should "create default categories and subcategories" do
       account = create(:account)

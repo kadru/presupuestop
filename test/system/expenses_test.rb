@@ -27,6 +27,53 @@ class SpentsTest < ApplicationSystemTestCase
     end
   end
 
+  test "expenses by month" do
+    category = create(:category_with_subcategories, account: @account)
+    current_month = Date.new(2024, 1, 1)
+    @account.expenses.create!(
+      name: "renta",
+      amount: 10_000,
+      month: current_month,
+      category:,
+      subcategory: category.subcategories.last
+    )
+    @account.expenses.create!(
+      name: "internet",
+      amount: 5000,
+      month: Date.new(2024, 2, 1),
+      category:,
+      subcategory: category.subcategories.last
+    )
+
+    travel_to current_month do
+      visit expenses_path
+      within :table do
+        assert_text "renta"
+        assert_text "$100.00"
+      end
+
+      # testing select month
+      select translate!("date.month_names")[2], from: :expense_month_2i
+      within :table do
+        assert_text "internet"
+        assert_text "$50.00"
+      end
+
+      # testing month back and forward buttons
+      click_on "month back"
+      within :table do
+        assert_text "renta"
+        assert_text "$100.00"
+      end
+
+      click_on "month forward"
+      within :table do
+        assert_text "internet"
+        assert_text "$50.00"
+      end
+    end
+  end
+
   test "should create expense" do
     create(:category_with_subcategories, account: @account)
 
