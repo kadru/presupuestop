@@ -8,7 +8,7 @@ class ExpensesController < AuthenticatedController
     render :index,
            locals: {
              expenses: current_account.expenses_ordered_with_category_subcategory.by_month(current_month),
-             new_expense: Expense.new,
+             new_expense: Expense.new(month: current_month),
              categories: current_account.categories.for_select,
              subcategories: [],
              current_month:,
@@ -40,6 +40,7 @@ class ExpensesController < AuthenticatedController
 
   # POST /expenses
   def create
+    current_month = CurrentMonth.new current_month_param
     expense = current_account.expenses.build(expense_params)
     categories_for_select = current_account.categories.for_select
 
@@ -49,7 +50,7 @@ class ExpensesController < AuthenticatedController
           render :create,
                  locals: {
                    expense:,
-                   new_expense: Expense.new,
+                   new_expense: Expense.new(month: current_month),
                    categories: categories_for_select,
                    subcategories: []
                  }
@@ -104,6 +105,7 @@ class ExpensesController < AuthenticatedController
       .require(:expense)
       .permit(:name,
               :amount_unit,
+              :month,
               :category_id,
               :subcategory_id)
   end
