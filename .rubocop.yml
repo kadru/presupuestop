@@ -26,6 +26,8 @@ Metrics/MethodLength:
   Enabled: false
 Metrics/BlockLength:
   Enabled: false
+Metrics/ClassLength:
+  Enabled: false
 
 Minitest/MultipleAssertions:
   Enabled: false
