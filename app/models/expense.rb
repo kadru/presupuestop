@@ -15,6 +15,10 @@ class Expense < ApplicationRecord
     order(id: :desc).includes(:category, :subcategory)
   }
 
+  scope :by_month, lambda { |month|
+    where(month: month.all_month)
+  }
+
   validates :name, presence: true, length: { maximum: 255 }
   validates :amount, presence: true, numericality: { only_integer: true }
   validates :amount_unit, presence: true, numericality: true

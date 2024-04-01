@@ -1,0 +1,39 @@
+<%# locals: (current_month:, prev_month:, next_month:) %>
+
+<div class="month-selector">
+  <div>
+    <%= link_to expenses_path(current_month: prev_month), title: "month back" do %>
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+    <% end %>
+  </div>
+  <div>
+    <%= form_with url: expenses_path,
+                  method: :get,
+                  class: "pure-form",
+                  data: {
+                    controller: "input-navigate"
+                  } do |f| %>
+    <%= date_select(:expense,
+                    :month,
+                    {
+                      discard_day: true,
+                      order: %i[month year],
+                      selected: current_month
+                    },
+                    {
+                      data: {
+                        action: "input-navigate#nav"
+                      }
+                    }) %>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to expenses_path(current_month: next_month), title: "month forward" do %>
+      <span class="material-symbols-outlined">
+        arrow_forward
+      </span>
+    <% end %>
+  </div>
+</div>

@@ -10,7 +10,12 @@ class Account < ApplicationRecord
            -> { merge(Expense.ordered_with_category_subcategory) },
            class_name: "Expense",
            dependent: :destroy,
-           inverse_of: :account
+           inverse_of: :account do
+    def by_month(month)
+      merge(Expense.by_month(month))
+    end
+  end
+
   has_many :categories, dependent: :destroy do
     def for_select
       pluck(:name, :id)

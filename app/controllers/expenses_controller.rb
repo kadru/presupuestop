@@ -2,16 +2,18 @@
 
 # Manage expenses
 class ExpensesController < AuthenticatedController
-  before_action :authenticate
-
   # GET /expenses
   def index
+    current_month = CurrentMonth.new current_month_param
     render :index,
            locals: {
-             expenses: current_account.expenses_ordered_with_category_subcategory,
-             new_expense: Expense.new,
+             expenses: current_account.expenses_ordered_with_category_subcategory.by_month(current_month),
+             new_expense: Expense.new(month: current_month),
              categories: current_account.categories.for_select,
-             subcategories: []
+             subcategories: [],
+             current_month:,
+             prev_month: current_month.prev_month,
+             next_month: current_month.next_month
            }
   end
 
@@ -38,6 +40,7 @@ class ExpensesController < AuthenticatedController
 
   # POST /expenses
   def create
+    current_month = CurrentMonth.new current_month_param
     expense = current_account.expenses.build(expense_params)
     categories_for_select = current_account.categories.for_select
 
@@ -47,7 +50,7 @@ class ExpensesController < AuthenticatedController
           render :create,
                  locals: {
                    expense:,
-                   new_expense: Expense.new,
+                   new_expense: Expense.new(month: current_month),
                    categories: categories_for_select,
                    subcategories: []
                  }
@@ -102,7 +105,16 @@ class ExpensesController < AuthenticatedController
       .require(:expense)
       .permit(:name,
               :amount_unit,
+              :month,
               :category_id,
               :subcategory_id)
+  end
+
+  def current_month_param
+    params[:current_month] || (params[:expense] && join_date_select_params(params[:expense]))
+  end
+
+  def join_date_select_params(parameter, field: "month")
+    parameter.select { _1.start_with?(field) }.values.join("-")
   end
 end
