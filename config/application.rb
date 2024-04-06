@@ -27,5 +27,7 @@ module Presupuestop
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.action_view.default_form_builder = "ApplicationFormBuilder"
+
+    config.active_job.queue_adapter = :good_job
   end
 end
