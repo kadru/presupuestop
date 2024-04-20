@@ -85,3 +85,5 @@ gem "good_job", "~> 3.27"
 gem "rodauth-i18n", "~> 0.7.1"
 gem "rodauth-rails", "~> 1.13"
 gem "webauthn", "~> 3.1"
+
+gem "honeybadger", "~> 5.8"

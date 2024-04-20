@@ -136,6 +136,7 @@ GEM
       fugit (>= 1.1)
       railties (>= 6.0.0)
       thor (>= 0.14.1)
+    honeybadger (5.8.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.3)
@@ -400,6 +401,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   good_job (~> 3.27)
+  honeybadger (~> 5.8)
   importmap-rails
   jbuilder
   minitest-focus (~> 1.4)
