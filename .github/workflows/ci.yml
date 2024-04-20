@@ -68,5 +68,6 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          DEFAULT_FROM_MAILER: no-reply@example.com
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/waterflow_app_test
         run: bin/rails test:all
