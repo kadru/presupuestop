@@ -321,6 +321,8 @@ GEM
     rubyzip (2.3.2)
     safety_net_attestation (0.4.0)
       jwt (~> 2.0)
+    scout_apm (5.3.8)
+      parser
     selenium-webdriver (4.16.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -420,6 +422,7 @@ DEPENDENCIES
   rubocop-rake
   rubocop-thread_safety
   ruby-lsp-rails
+  scout_apm
   selenium-webdriver
   shoulda (= 5.0.0.rc1)
   sprockets-rails
