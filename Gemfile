@@ -87,3 +87,4 @@ gem "rodauth-rails", "~> 1.13"
 gem "webauthn", "~> 3.1"
 
 gem "honeybadger", "~> 5.8"
+gem "scout_apm"
