@@ -46,9 +46,9 @@
     </button>
   </div>
   <%= turbo_frame_tag new_expense do %>
-  <%= render "form",
-             expense: new_expense,
-             categories: categories,
-             subcategories: subcategories %>
+    <%= render "form",
+               expense: new_expense,
+               categories: categories,
+               subcategories: subcategories %>
    <% end %>
 </div>
