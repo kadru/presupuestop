@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :expenses, except: %i[show]
+  resources :expenses, except: %i[show] do
+    get :total_amount, on: :collection
+  end
+
   resources :categories, only: %i[index destroy new create edit update] do
     resources :subcategories, only: %i[index]
   end

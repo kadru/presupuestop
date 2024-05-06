@@ -301,6 +301,8 @@ en:
     expense:
       delete: delete
       edit: edit
+    total_amount:
+      total: Total
 
   links:
     expenses: expenses

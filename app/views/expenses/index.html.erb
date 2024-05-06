@@ -29,6 +29,10 @@
 
 <br>
 
+<%= turbo_frame_tag :total_expense, src: total_amount_expenses_path(current_month:) %>
+
+<br>
+
 <%= button_tag t(".new_expense"),
                type: "button",
                class: "pure-button pure-button-primary button-large",

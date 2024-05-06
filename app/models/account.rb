@@ -7,7 +7,10 @@ class Account < ApplicationRecord
 
   has_many :expenses, dependent: :destroy
   has_many :expenses_ordered_with_category_subcategory,
-           -> { merge(Expense.ordered_with_category_subcategory) },
+           lambda {
+             merge(Expense.with_category_subcategory)
+               .merge(Expense.ordered)
+           },
            class_name: "Expense",
            dependent: :destroy,
            inverse_of: :account do
@@ -30,5 +33,9 @@ class Account < ApplicationRecord
         end
       end
     end
+  end
+
+  def total_amount_expenses_by_month(date)
+    Expense.total_amount_by_month_and_account(account_id: id, date:)
   end
 end

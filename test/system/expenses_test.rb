@@ -25,6 +25,8 @@ class SpentsTest < ApplicationSystemTestCase
       assert_text "vivienda"
       assert_text "renta"
     end
+
+    assert_text "#{translate!('expenses.total_amount.total')} $100.00"
   end
 
   test "expenses by month" do

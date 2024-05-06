@@ -17,6 +17,16 @@ class ExpensesController < AuthenticatedController
            }
   end
 
+  # GET /expenses/total_amount
+  def total_amount
+    render :total_amount,
+           locals: {
+             total: AmountUnit.new(current_account.total_amount_expenses_by_month(
+                                     CurrentMonth.new(current_month_param)
+                                   ))
+           }
+  end
+
   # GET /expenses/new
   def new
     render :new,
