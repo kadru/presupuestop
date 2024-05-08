@@ -27,6 +27,7 @@ class SpentsTest < ApplicationSystemTestCase
     end
 
     assert_text "#{translate!('expenses.total_amount.total')} $100.00"
+    assert_total "100.00"
   end
 
   test "expenses by month" do
@@ -99,6 +100,7 @@ class SpentsTest < ApplicationSystemTestCase
       assert_text "renta"
     end
 
+    assert_total "1,111.00"
     # should render a empty form after create a expense
     click_on translate!("expenses.index.new_expense")
     within "#popoverNew" do
@@ -155,6 +157,9 @@ class SpentsTest < ApplicationSystemTestCase
     expense = create_expense
 
     visit expenses_url
+
+    assert_total "100.00"
+
     within "tr#expense_#{expense.id}" do
       click_on "edit"
     end
@@ -171,6 +176,8 @@ class SpentsTest < ApplicationSystemTestCase
       assert_text "vivienda"
       assert_text "renta"
     end
+
+    assert_total "20,000"
   end
 
   test "when updating with empty data then should show a error message" do
@@ -196,6 +203,7 @@ class SpentsTest < ApplicationSystemTestCase
       click_on "delete"
     end
 
+    assert_total "0.00"
     assert_no_css "#spent_#{expense.id}"
   end
 
@@ -210,5 +218,9 @@ class SpentsTest < ApplicationSystemTestCase
       category:,
       subcategory: category.subcategories.last
     )
+  end
+
+  def assert_total(total)
+    assert_text "#{translate!('expenses.total_amount.total')} $#{total}"
   end
 end

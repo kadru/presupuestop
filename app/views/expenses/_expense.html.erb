@@ -17,7 +17,14 @@
     <%= button_to expense_path(expense),
                   method: :delete,
                   title: t(".delete"),
-                  class: "pure-button" do %>
+                  class: "pure-button",
+                  form: {
+                    data: {
+                      controller: "turbo-reload",
+                      "turbo-reload-frame-value": "total_expense",
+                      action: "turbo:submit-end->turbo-reload#reloadFrame"
+                    }
+                  } do %>
       <span class="material-symbols-outlined">
         delete
       </span>
