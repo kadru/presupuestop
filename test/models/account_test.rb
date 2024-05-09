@@ -61,4 +61,20 @@ class AccountTest < ActiveSupport::TestCase
       end
     end
   end
+
+  describe "#total_amount_expenses_by_month" do
+    it "returns the total amount expenses of the account by month" do
+      account = build(:account, id: 0)
+      given_date = Time.zone.local(2024, 1, 1)
+
+      Expense.stub :total_amount_by_month_and_account,
+                   lambda { |account_id:, date:|
+                     assert_equal account.id, account_id
+                     assert_equal date, given_date
+                     1000
+                   } do
+        assert_equal 1000, account.total_amount_expenses_by_month(Time.zone.local(2024, 1, 1))
+      end
+    end
+  end
 end

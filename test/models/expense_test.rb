@@ -18,6 +18,14 @@ class ExpenseTest < ActiveSupport::TestCase
     should validate_numericality_of(:amount).only_integer
   end
 
+  describe ".total_amount_by_month_and_account" do
+    it "returns the sum of total amount by account id and month" do
+      account = create(:account, :with_expenses)
+
+      assert_equal 10_000, Expense.total_amount_by_month_and_account(account_id: account.id, date: Time.current)
+    end
+  end
+
   describe "#amount_unit=" do
     should "write the given amount in cents" do
       expense = Expense.new

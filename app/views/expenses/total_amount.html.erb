@@ -1,0 +1,5 @@
+<%= turbo_frame_tag :total_expense do%>
+  <div>
+    <%= t(".total") %> <%= number_to_currency(total) %>
+  </div>
+<% end %>

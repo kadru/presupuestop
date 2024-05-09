@@ -2,6 +2,12 @@
 
 # Stores spents done with amount and categories
 class Expense < ApplicationRecord
+  FACTOR = 100
+
+  def self.total_amount_by_month_and_account(account_id:, date:)
+    by_account(account_id).by_month(date).total_amount
+  end
+
   belongs_to :account
   belongs_to :category
   belongs_to :subcategory
@@ -11,13 +17,25 @@ class Expense < ApplicationRecord
     end
   end
 
+  scope :by_account, ->(account_id) { where(account_id:) }
+
+  scope :with_category_subcategory, lambda {
+    includes(:category, :subcategory)
+  }
+
+  scope :ordered, lambda {
+    order(id: :desc)
+  }
+
   scope :ordered_with_category_subcategory, lambda {
     order(id: :desc).includes(:category, :subcategory)
   }
 
-  scope :by_month, lambda { |month|
-    where(month: month.all_month)
+  scope :by_month, lambda { |date|
+    where(month: date.all_month)
   }
+
+  scope :total_amount, -> { sum(:amount) }
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :amount, presence: true, numericality: { only_integer: true }
@@ -42,14 +60,14 @@ class Expense < ApplicationRecord
     self.amount =  if amount_unit_.nil?
                      amount_unit_
                    else
-                     (attributes["amount_unit"] * 100).to_i
+                     (attributes["amount_unit"] * FACTOR).to_i
                    end
   end
 
   def amount_unit
     return if amount.nil?
 
-    quotient, remainder = amount.divmod 100
+    quotient, remainder = amount.divmod FACTOR
     BigDecimal("#{quotient}.#{remainder}")
   end
 

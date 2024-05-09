@@ -1,6 +1,6 @@
 .scrollable-table {
   overflow-y: auto;
-  max-height: 59vh;
+  max-height: 68vh;
 }
 
 .scrollable-table > table {
@@ -12,8 +12,8 @@
   top: 0px;
 }
 
-@media(min-height: 42rem) {
-.scrollable-table {
-    max-height: 90vh;
+@media (min-width: 768px) {
+  .scrollable-table {
+    max-height: 80vh;
   }
 }
