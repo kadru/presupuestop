@@ -1,6 +1,6 @@
 .scrollable-table {
   overflow-y: auto;
-  max-height: 68vh;
+  max-height: 53vh;
 }
 
 .scrollable-table > table {
