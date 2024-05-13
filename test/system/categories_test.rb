@@ -12,7 +12,7 @@ class CategoriesTest < ApplicationSystemTestCase
     @account.create_categories!
     visit categories_path
 
-    assert_selector "header > h2", text: "CATEGORIES"
+    assert_title "Categories"
     # assert categories and budget
     assert_text "vivienda"
     assert_text "budget: $0.00"

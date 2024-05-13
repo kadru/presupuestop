@@ -12,7 +12,7 @@ class SpentsTest < ApplicationSystemTestCase
     create_expense
     visit expenses_url
 
-    assert_selector "h2", text: "EXPENSE"
+    assert_title "Expenses"
     within "table" do
       # Assert headers
       assert_text "name"
