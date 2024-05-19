@@ -4,8 +4,25 @@
   --sidebarfont: white;
   --sidebar-link-hover: rgb(51, 58, 78);
   --color-white: hsl(0, 0%, 100%);
-  --color-text-header: hsl(0, 1%, 16%);
+  --color-text-header: #050C1A;
   --color-dark: var(--color-text-header);
+  --color-dark-9: #0C1829;
+  --color-dark-7: #223345;
+  --color-dark-5: #3d4f5d;
+  --color-dark-4: #6B808C;
+  --color-dark-lighten: #28282ee8 ;
+  --color-light-3: #A2B5BD;
+  --color-light-2:  #C5D2D6;
+  --color-light-1: #E9EEF0;
+  --color-light: #F2F6F7;
+  --color-blue-light: #70ade6;
+  --thead-color: var(--color-light-1);
+  --pure-menu-link-font-color: #777;
+  --button-color: #e6e6e6;
+  --disable-color: #eee;
+  --disable-font-color: #777;
+  --button-primary-color: #0078e7;
+  --button-primary-font-color: #fff;
 
   --space-xxxs: 0.25rem;
   --space-xxs: 0.375rem;
@@ -29,4 +46,20 @@
 
   /* tested on iphone 14 prox max */
   --min-vertical-height: 42rem
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: var(--color-dark);
+    --font-color: var(--color-light);
+    --thead-color: var(--color-dark-7);
+    --stripped-row-color: var(--color-dark-9);
+    --button-color: var(--color-dark-5);
+    --button-font-color: var(--color-light);
+    --button-primary-color: var(--color-blue-light);
+    --button-primary-font-color: var(--color-dark);
+    --disable-color: var(--color-dark-lighten);
+    --disable-font-color: #888686;
+    --pure-menu-link-font-color: var(--color-light);
+  }
 }
