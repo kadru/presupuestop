@@ -74,3 +74,55 @@ main .material-symbols-outlined {
 body .content {
   padding: 1em 1em 0;
 }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+[popover] {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+.pure-table thead {
+  background-color: var(--thead-color);
+  color: var(--font-color);
+}
+
+.pure-table-striped tr:nth-child(2n-1) td {
+  background-color: var(--stripped-row-color);
+  color: var(--font-color);
+}
+
+input {
+  background-color: var(--bg-color);
+  color: var(--font-color); 
+}
+
+.pure-form select {
+  background-color: var(--bg-color);
+}
+
+.pure-button {
+  background-color: var(--button-color);
+  color: var(--button-font-color);
+}
+
+.pure-button-primary {
+  background-color: var(--button-primary-color);
+  color: var(--button-primary-font-color);
+}
+
+select {
+  color: var(--font-color);
+}
+
+.pure-form input[readonly], .pure-form select[readonly], .pure-form textarea[readonly] {
+  background-color: var(--disable-color);
+  color: var(--disable-font-color);
+}
+
+.pure-menu-link {
+  color: var(--pure-menu-link-font-color);
+}
