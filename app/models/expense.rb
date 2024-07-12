@@ -55,7 +55,7 @@ class Expense < ApplicationRecord
   attribute :amount_unit, :decimal
 
   def amount_unit=(value)
-    super(value)
+    super
     amount_unit_ = attributes["amount_unit"]
     self.amount =  if amount_unit_.nil?
                      amount_unit_
