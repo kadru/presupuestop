@@ -21,6 +21,11 @@ AllCops:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Style/Documentation:
+  Exclude:
+    - db/migrate/*
+    - 'spec/**/*'
+    - 'test/**/*'
 
 Metrics/MethodLength:
   Enabled: false

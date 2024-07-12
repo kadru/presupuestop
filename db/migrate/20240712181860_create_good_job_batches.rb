@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CreateGoodJobBatches < ActiveRecord::Migration[7.1]
-  def change
+  def change # rubocop:disable Metrics/AbcSize
     reversible do |dir|
       dir.up do
         # Ensure this incremental update migration is idempotent
