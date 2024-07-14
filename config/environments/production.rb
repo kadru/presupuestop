@@ -111,4 +111,6 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.good_job.on_thread_error = ->(exception) { Rails.error.report(exception) }
 end
