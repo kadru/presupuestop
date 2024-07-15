@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "3.3.1"
+ruby file: ".ruby-version"
 
 gem "dotenv-rails"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
