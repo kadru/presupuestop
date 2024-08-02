@@ -14,7 +14,8 @@
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined",
                             "data-turob-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag 'application' %>
   </head>
 
   <body>
