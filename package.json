@@ -9,5 +9,8 @@
     "inputmask": "^5.0.9",
     "stimulus-vite-helpers": "^3.1.0",
     "vite-plugin-rails": "^0.5.0"
-  }
+  },
+   "engines": {
+      "node": "^20"
+    }
 }
