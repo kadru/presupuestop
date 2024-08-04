@@ -19,7 +19,8 @@ Rails.application.configure do
       policy.script_src(
         *policy.script_src,
         :unsafe_eval,
-        "http://#{ViteRuby.config.host_with_port}")
+        "http://#{ViteRuby.config.host_with_port}"
+      )
     end
 
     # You may need to enable this in production as well depending on your setup.
