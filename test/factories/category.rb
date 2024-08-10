@@ -10,8 +10,8 @@ FactoryBot.define do
         subcategories_count { 1 }
       end
 
-      subcategories do
-        Array.new(subcategories_count) { association :subcategory }
+      after(:create) do |category, context|
+        create_list(:subcategory, context.subcategories_count, category:)
       end
 
       trait :budget1000 do

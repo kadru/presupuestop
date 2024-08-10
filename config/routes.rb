@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     end
   end
 
+  get "dashboard" => "dashboard#index"
+  namespace :dashboard do
+    resources :expenses, only: %i[index]
+  end
+
   get "profile" => "profile#show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
