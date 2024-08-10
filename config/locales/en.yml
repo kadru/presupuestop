@@ -269,6 +269,7 @@ en:
     title:
       expenses: Expenses
       categories: Categories
+      dashboard: Home
   # views
   rodauth:
     login_form_footer:
@@ -288,6 +289,8 @@ en:
   subcategories:
     form:
       remove_submit: remove
+  charts:
+    monthly_expenses: Monthly Expenses
 
   #controllers
   expenses:
@@ -305,6 +308,7 @@ en:
       total: Total
 
   links:
+    home: home
     expenses: expenses
     profile: Profile
     remember: Remember Setting

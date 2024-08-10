@@ -1,16 +1,30 @@
 import * as echarts from 'echarts/core';
-import { TooltipComponent} from 'echarts/components';
+import { TooltipComponent, TitleComponent} from 'echarts/components';
 import { SunburstChart } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 
-echarts.use([SunburstChart, CanvasRenderer, TooltipComponent]);
+echarts.use([
+  SunburstChart,
+  CanvasRenderer,
+  TooltipComponent,
+  TitleComponent]);
 
 export { echarts as sunburst }
 
 export class Sunburst {
-  constructor(element, data = [], theme = 'dark') {
+  constructor(// element, data = [], theme = 'dark', options = {
+      {
+        element,
+        data = [],
+        theme = 'dark',
+        title = 'Chart title'
+      }
+  ) {
     this.chart = echarts.init(element, theme)
     this.option = {
+      title: {
+        text: title
+      },
       tooltip: {
         renderMode: "richText" // the default render mode 'html' doesn't work with CSP configured with vite in dev env
       },

@@ -3,17 +3,23 @@ import { Sunburst } from "../charts/sunburst";
 
 // Connects to data-controller="chart"
 export default class extends Controller {
+  static values = {
+    title: String
+  }
+
   initialize() {
     this.resizeChart = this.resizeChart.bind(this);
   }
 
   async connect() {
     const dashboardExpenses = await this.fetchDashboardExpenses()
-    
-    this.sunburst = new Sunburst(this.element, dashboardExpenses, this.theme());
-    
-    window.addEventListener('resize', this.resizeChart);
+    this.sunburst = new Sunburst({ 
+      element: this.element,
+      data: dashboardExpenses,
+      title: this.titleValue,
+      theme: this.theme()})
 
+    window.addEventListener('resize', this.resizeChart);
     this.sunburst.render();
   }
 
