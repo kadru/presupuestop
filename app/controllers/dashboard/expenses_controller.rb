@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Dashboard
+  # Show calculation of expenses for dashboard page
   class ExpensesController < AuthenticatedController
     def index
       render json: to_category_with_children(
