@@ -5,6 +5,10 @@ require "test_helper"
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
 
+  def self.driven_by_selenium_headful
+    driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+  end
+
   def login(email: "user@example.com", password: "averysecret")
     visit "/login"
     fill_in "login", with: email
@@ -28,6 +32,17 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
         user_verified: true, # These options support login authentication using webauthn
         user_verification: true
       )
+    )
+  end
+
+  def create_expense
+    category = create(:category_with_subcategories, account: @account)
+
+    @account.expenses.create!(
+      name: "renta departamento",
+      amount: 10_000,
+      category:,
+      subcategory: category.subcategories.last
     )
   end
 end

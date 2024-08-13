@@ -63,13 +63,13 @@ class SpentsTest < ApplicationSystemTestCase
       end
 
       # testing month back and forward buttons
-      click_on "month back"
+      click_on translate!("application.month_selector.prev_month")
       within :table do
         assert_text "renta"
         assert_text "$100.00"
       end
 
-      click_on "month forward"
+      click_on translate!("application.month_selector.next_month")
       within :table do
         assert_text "internet"
         assert_text "$50.00"
@@ -131,7 +131,7 @@ class SpentsTest < ApplicationSystemTestCase
       assert_text "renta"
     end
 
-    click_on "month forward"
+    click_on translate!("application.month_selector.next_month")
 
     # assert the we're in the next month
     assert_field :expense_month_2i, with: "2"
@@ -208,17 +208,6 @@ class SpentsTest < ApplicationSystemTestCase
   end
 
   private
-
-  def create_expense
-    category = create(:category_with_subcategories, account: @account)
-
-    @account.expenses.create!(
-      name: "renta departamento",
-      amount: 10_000,
-      category:,
-      subcategory: category.subcategories.last
-    )
-  end
 
   def assert_total(total)
     assert_text "#{translate!('expenses.total_amount.total')} $#{total}"

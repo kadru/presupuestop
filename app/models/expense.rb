@@ -8,6 +8,15 @@ class Expense < ApplicationRecord
     by_account(account_id).by_month(date).total_amount
   end
 
+  def self.amount_grouped_by_cat_and_sub(account_id:, date:)
+    joins(subcategory: :category)
+      .by_account(account_id)
+      .by_month(date)
+      .group("categories.name",
+             "subcategories.name")
+      .total_amount
+  end
+
   belongs_to :account
   belongs_to :category
   belongs_to :subcategory
