@@ -293,7 +293,7 @@ en:
     index:
       empty_expenses_data: "Seems that you don't have any expense registered for this month. Please add at least one
         expense to show this chart"
-  shared:
+  application:
     month_selector:
      prev_month: previous month
      next_month: next month
