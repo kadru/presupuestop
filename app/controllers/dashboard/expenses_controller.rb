@@ -6,7 +6,7 @@ module Dashboard
       render json: to_category_with_children(
         Expense.amount_grouped_by_cat_and_sub(
           account_id: current_account.id,
-          date: Time.current
+          date: CurrentMonth.new(params[:current_month])
         )
       )
     end

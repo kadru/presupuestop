@@ -1,0 +1,48 @@
+<%# locals: (current_month:,
+             prev_month:,
+             next_month:,
+             controller:) %>
+
+<div class="month-selector">
+  <div>
+    <%= link_to({ controller:,
+                  action: :index,
+                  params: { current_month: prev_month } },
+                  title: t(".prev_month")) do %>
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+    <% end %>
+  </div>
+  <div>
+    <%= form_with url: expenses_path,
+                  method: :get,
+                  class: "pure-form",
+                  data: {
+                    controller: "input-navigate"
+                  } do |f| %>
+    <%= date_select(:expense,
+                    :month,
+                    {
+                      discard_day: true,
+                      order: %i[month year],
+                      selected: current_month
+                    },
+                    {
+                      data: {
+                        action: "input-navigate#nav"
+                      }
+                    }) %>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to({ controller:,
+                  action: :index,
+                  params: { current_month: next_month } },
+                  title: t(".next_month", raise:true)) do %>
+      <span class="material-symbols-outlined">
+        arrow_forward
+      </span>
+    <% end %>
+  </div>
+</div>

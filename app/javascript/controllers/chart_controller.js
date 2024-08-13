@@ -4,7 +4,8 @@ import { Sunburst } from "../charts/sunburst";
 // Connects to data-controller="chart"
 export default class extends Controller {
   static values = {
-    title: String
+    title: String,
+    currentMonth: String
   }
 
   initialize() {
@@ -12,12 +13,22 @@ export default class extends Controller {
   }
 
   async connect() {
-    const dashboardExpenses = await this.fetchDashboardExpenses()
+    // turbo makes the connect callback called twice
+    // see https://stackoverflow.com/a/78393096
+    if (document.documentElement.hasAttribute('data-turbo-preview')) {
+      return;
+    }
+
+    const dashboardExpenses = await this.fetchDashboardExpenses();
+    if (dashboardExpenses.length === 0) {
+      return;
+    }
+
     this.sunburst = new Sunburst({ 
       element: this.element,
       data: dashboardExpenses,
       title: this.titleValue,
-      theme: this.theme()})
+      theme: this.theme()});
 
     window.addEventListener('resize', this.resizeChart);
     this.sunburst.render();
@@ -25,7 +36,7 @@ export default class extends Controller {
 
   disconnect() {
     document.removeEventListener('resize', this.resizeChart)
-    this.sunburst.dispose()
+    this.sunburst?.dispose();
   }
 
   resizeChart() {
@@ -41,7 +52,10 @@ export default class extends Controller {
   }
 
   async fetchDashboardExpenses() {
-    const response = await fetch('dashboard/expenses')
+    const response = await fetch(`dashboard/expenses?${new URLSearchParams({
+      current_month: this.currentMonthValue
+    }).toString()}`)
+
     return await response.json()
   }
 }

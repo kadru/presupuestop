@@ -209,17 +209,6 @@ class SpentsTest < ApplicationSystemTestCase
 
   private
 
-  def create_expense
-    category = create(:category_with_subcategories, account: @account)
-
-    @account.expenses.create!(
-      name: "renta departamento",
-      amount: 10_000,
-      category:,
-      subcategory: category.subcategories.last
-    )
-  end
-
   def assert_total(total)
     assert_text "#{translate!('expenses.total_amount.total')} $#{total}"
   end
