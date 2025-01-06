@@ -80,7 +80,7 @@ group :test do
   gem "shoulda", "5.0.0.rc1"
 end
 
-gem "good_job", "~> 4"
+gem "good_job", "~> 4.7.0"
 gem "rodauth-i18n", "~> 0.7.1"
 gem "rodauth-rails", "~> 1.13"
 gem "webauthn", "~> 3.1"
