@@ -17,6 +17,8 @@ class CreateActiveStorageVariantRecords < ActiveRecord::Migration[6.0]
 
   private
 
+    # rubocop:disable Layout/IndentationConsistency
+    # rubocop:disable Layout/IndentationWidth
     def primary_key_type
       config = Rails.configuration.generators
       config.options[config.orm][:primary_key_type] || :primary_key
@@ -27,4 +29,7 @@ class CreateActiveStorageVariantRecords < ActiveRecord::Migration[6.0]
       pkey_column = connection.columns(:active_storage_blobs).find { |c| c.name == pkey_name }
       pkey_column.bigint? ? :bigint : pkey_column.type
     end
+
+  # rubocop:enable Layout/IndentationWidth
+  # rubocop:enable Layout/IndentationConsistency
 end
