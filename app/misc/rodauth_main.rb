@@ -103,9 +103,11 @@ class RodauthMain < Rodauth::Rails::Auth
     # create_unlock_account_email do
     #   RodauthMailer.unlock_account(self.class.configuration_name, account_id, unlock_account_key_value)
     # end
-    send_email do |email|
+    send_email do |email| # rubocop:disable Style/SymbolProc
+      email.deliver_later
+      # this doesn't work since rails 7.2.x
       # queue email delivery on the mailer after the transaction commits
-      db.after_commit { email.deliver_later }
+      # db.after_commit { email.deliver_later }
     end
 
     # ==> Flash
