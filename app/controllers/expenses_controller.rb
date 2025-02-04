@@ -31,7 +31,7 @@ class ExpensesController < AuthenticatedController
   def new
     render :new,
            locals: {
-             expense: current_account.expenses.build,
+             expense: current_account.expenses.build(month: current_month_param),
              categories: current_account.categories.for_select,
              subcategories: []
            }

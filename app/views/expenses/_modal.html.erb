@@ -1,0 +1,19 @@
+<%# locals: (turbo_tag_id:) %>
+
+<dialog
+  class="dialog"
+  data-controller="modal"
+  data-modal-target="dialog"
+  data-action="turbo:frame-load->modal#open turbo:submit-end->modal#close">
+  <div class="to-right">
+    <button
+      class="icon-button"
+      data-action="modal#close">
+      <span class="material-symbols-outlined to-right">
+        close
+      </span>
+    </button>
+  </div>
+  <%= turbo_frame_tag turbo_tag_id %>
+</dialog>
+</div>

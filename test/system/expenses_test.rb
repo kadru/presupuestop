@@ -101,14 +101,6 @@ class SpentsTest < ApplicationSystemTestCase
     end
 
     assert_total "1,111.00"
-    # should render a empty form after create a expense
-    click_on translate!("expenses.index.new_expense")
-    within "#popoverNew" do
-      assert_field "expense[name]", with: ""
-      assert_field "expense[amount_unit]", with: ""
-      assert_field "expense[category_id]", with: ""
-      assert_field "expense[subcategory_id]", with: ""
-    end
   end
 
   test "create expense within another month" do
@@ -160,7 +152,7 @@ class SpentsTest < ApplicationSystemTestCase
 
     assert_total "100.00"
 
-    within "tr#expense_#{expense.id}" do
+    within "tr#table_expense_#{expense.id}" do
       click_on "edit"
     end
 
@@ -184,7 +176,7 @@ class SpentsTest < ApplicationSystemTestCase
     expense = create_expense
 
     visit expenses_url
-    within "tr#expense_#{expense.id}" do
+    within "tr#table_expense_#{expense.id}" do
       click_on "edit"
     end
 
@@ -199,12 +191,12 @@ class SpentsTest < ApplicationSystemTestCase
 
     visit expenses_url
 
-    within "tr#expense_#{expense.id}" do
+    within "tr#table_expense_#{expense.id}" do
       click_on "delete"
     end
 
     assert_total "0.00"
-    assert_no_css "#spent_#{expense.id}"
+    assert_no_css "#table_expense_#{expense.id}"
   end
 
   private
