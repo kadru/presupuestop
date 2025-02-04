@@ -1,4 +1,4 @@
-<tr id="<%= dom_id expense %>">
+<tr id="<%= "table_#{dom_id(expense)}" %>">
   <td><%= expense.name %></td>
   <td><%= number_to_currency(expense.amount_unit) %></td>
   <td>
@@ -6,11 +6,12 @@
     <%= expense.subcategory_name %>
   </td>
   <td class="actions">
-    <%= button_tag type: :button,
-                  title: t(".edit"),
-                  class: "pure-button",
-                  popovertarget: "popoverEdit#{expense.id}" do %>
-      <span class="material-symbols-outlined">
+    <%= link_to(
+            edit_expense_path(expense),
+            title: t(".edit"),
+            class: "pure-button",
+            data: { turbo_frame: dom_id(expense) }) do %>
+       <span class="material-symbols-outlined">
         edit
       </span>
     <% end %>
@@ -29,18 +30,6 @@
         delete
       </span>
     <% end %>
-    <div id="popoverEdit<%=  expense.id %>"
-         class="popover-container"
-         popover
-         data-controller="popover-form">
-      <div class="to-right">
-        <button class="icon-button" popovertarget="popoverEdit<%=  expense.id %>" popovertargetaction="hide">
-          <span class="material-symbols-outlined to-right">
-            close
-          </span>
-        </button>
-      </div>
-      <%= turbo_frame_tag expense, src: edit_expense_path(expense), loading: :lazy %>
-    </div>
+    <%= render "modal", turbo_tag_id: expense %>
   </td>
 </tr>

@@ -152,7 +152,7 @@ class SpentsTest < ApplicationSystemTestCase
 
     assert_total "100.00"
 
-    within "tr#expense_#{expense.id}" do
+    within "tr#table_expense_#{expense.id}" do
       click_on "edit"
     end
 
@@ -176,7 +176,7 @@ class SpentsTest < ApplicationSystemTestCase
     expense = create_expense
 
     visit expenses_url
-    within "tr#expense_#{expense.id}" do
+    within "tr#table_expense_#{expense.id}" do
       click_on "edit"
     end
 
@@ -191,12 +191,12 @@ class SpentsTest < ApplicationSystemTestCase
 
     visit expenses_url
 
-    within "tr#expense_#{expense.id}" do
+    within "tr#table_expense_#{expense.id}" do
       click_on "delete"
     end
 
     assert_total "0.00"
-    assert_no_css "#spent_#{expense.id}"
+    assert_no_css "#table_expense_#{expense.id}"
   end
 
   private

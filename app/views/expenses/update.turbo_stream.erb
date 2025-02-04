@@ -1,3 +1,3 @@
-<%= turbo_stream.replace expense,
+<%= turbo_stream.replace "table_#{dom_id(expense)}",
                          partial: "expenses/expense",
                          locals: { expense: expense } %>
