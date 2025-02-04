@@ -1,0 +1,9 @@
+dialog.dialog {
+  border: 0px;
+  background: var(--bg-color);
+  color: var(--font-color);
+}
+
+dialog.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.856);
+}

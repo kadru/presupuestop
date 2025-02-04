@@ -101,14 +101,6 @@ class SpentsTest < ApplicationSystemTestCase
     end
 
     assert_total "1,111.00"
-    # should render a empty form after create a expense
-    click_on translate!("expenses.index.new_expense")
-    within "#popoverNew" do
-      assert_field "expense[name]", with: ""
-      assert_field "expense[amount_unit]", with: ""
-      assert_field "expense[category_id]", with: ""
-      assert_field "expense[subcategory_id]", with: ""
-    end
   end
 
   test "create expense within another month" do

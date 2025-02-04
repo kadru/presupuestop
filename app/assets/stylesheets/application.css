@@ -24,6 +24,10 @@ a {
   color: rgb(61, 146, 201);
 }
 
+a.button {
+  text-decoration: none;
+}
+
 a:hover,
 a:focus {
   text-decoration: underline;
@@ -109,7 +113,18 @@ input {
   color: var(--button-font-color);
 }
 
+a.pure-button {
+  background-color: var(--button-color);
+  color: var(--button-font-color);
+  text-decoration: none;
+}
+
 .pure-button-primary {
+  background-color: var(--button-primary-color);
+  color: var(--button-primary-font-color);
+}
+
+a.pure-button-primary {
   background-color: var(--button-primary-color);
   color: var(--button-primary-font-color);
 }

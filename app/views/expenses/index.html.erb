@@ -34,26 +34,25 @@
 
 <br>
 
-<%= button_tag t(".new_expense"),
-               type: "button",
-               class: "pure-button pure-button-primary button-large",
-               popovertarget: "popoverNew" %>
+<%= link_to(t(".new_expense"),
+            new_expense_path(current_month:),
+            class: "pure-button pure-button-primary button-large",
+            data: { turbo_frame: :new_expense }) %>
 
-<div id="popoverNew"
-     class="popover-container"
-     popover
-     data-controller="popover-form">
+<dialog
+  class="dialog"
+  data-controller="modal"
+  data-modal-target="dialog"
+  data-action="turbo:frame-load->modal#open turbo:submit-end->modal#close">
   <div class="to-right">
-    <button class="icon-button" popovertarget="popoverNew" popovertargetaction="hide">
+    <button
+      class="icon-button"
+      data-action="modal#close">
       <span class="material-symbols-outlined to-right">
         close
       </span>
     </button>
   </div>
-  <%= turbo_frame_tag new_expense do %>
-    <%= render "form",
-               expense: new_expense,
-               categories: categories,
-               subcategories: subcategories %>
-   <% end %>
+  <%= turbo_frame_tag :new_expense %>
+</dialog>
 </div>
