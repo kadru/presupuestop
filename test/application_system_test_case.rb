@@ -19,6 +19,8 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on translate!("rodauth.login_button")
     fill_in "password", with: password
     click_on translate!("rodauth.login_button")
+
+    assert_text "HOME"
   end
 
   def logout

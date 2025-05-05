@@ -18,6 +18,9 @@ class VerifyAccountTest < ApplicationSystemTestCase
     assert_text translate!("rodauth.verify_account_resend_explanatory_text")
 
     click_on translate!("rodauth.verify_account_resend_button")
+
+    assert_text "Login"
+
     visit email_link(%r{(/verify-account\?key=.+)$}, account.email)
     click_on translate!("rodauth.verify_account_button")
 
