@@ -3,10 +3,14 @@
 require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400] do |option|
+    option.unhandled_prompt_behavior = :ignore
+  end
 
   def self.driven_by_selenium_headful
-    driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+    driven_by :selenium, using: :chrome, screen_size: [1400, 1400] do |option|
+      option.unhandled_prompt_behavior = :ignore
+    end
   end
 
   def login(email: "user@example.com", password: "averysecret")
@@ -15,6 +19,8 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on translate!("rodauth.login_button")
     fill_in "password", with: password
     click_on translate!("rodauth.login_button")
+
+    assert_text "HOME"
   end
 
   def logout
@@ -23,6 +29,8 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def setup
     Capybara.app_host = "http://localhost"
+    Capybara.default_max_wait_time = 10
+    Capybara::Lockstep.debug = ENV.fetch("CAPYBARA_LOCKSTEP_DEBUG", false)
     setup_virtual_auth
   end
 

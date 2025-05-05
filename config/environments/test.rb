@@ -73,4 +73,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {
     host: ENV.fetch("HOST", "localhost")
   }
+
+  config.middleware.insert_before 0, Capybara::Lockstep::Middleware
 end
