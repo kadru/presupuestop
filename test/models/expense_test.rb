@@ -26,29 +26,6 @@ class ExpenseTest < ActiveSupport::TestCase
     end
   end
 
-  describe ".amount_grouped_by_cat_and_sub" do
-    it "returns an array with expenses amount grouped by category and subcategory" do
-      account = create(:account, :with_expenses)
-      category = account.categories.last
-      subcategory = create(
-        :subcategory,
-        name: "mantenimiento",
-        category:
-      )
-      create(:expense, subcategory:, category:, account:)
-      category_feeding = create(:category, name: "alimentacion", account:)
-      subcategory_pantry = create(:subcategory, name: "despensa", category: category_feeding)
-      create(:expense, subcategory: subcategory_pantry, category: category_feeding, account:)
-
-      assert_equal({
-                     %w[alimentacion despensa] => 10_000,
-                     %w[vivienda mantenimiento] => 10_000,
-                     %w[vivienda renta] => 10_000
-                   },
-                   Expense.amount_grouped_by_cat_and_sub(account_id: account.id, date: Time.current))
-    end
-  end
-
   describe "#amount_unit=" do
     should "write the given amount in cents" do
       expense = Expense.new

@@ -3,25 +3,23 @@
 module Dashboard
   # Show calculation of expenses for dashboard page
   class ExpensesController < AuthenticatedController
-    def index
-      render json: to_category_with_children(
-        Expense.amount_grouped_by_cat_and_sub(
+    def amount_by_category
+      render json: CategoryAmountResource.new(
+        Category.expenses_by_month(
           account_id: current_account.id,
-          date: CurrentMonth.new(params[:current_month])
+          month: CurrentMonth.new(params[:current_month])
         )
-      )
+      ).serialize
     end
 
-    private
-
-    # transforms the total_amount hash to an array that the chart library can
-    # understand, this is a divergent change consider to move a appropiate object
-    def to_category_with_children(total_amount)
-      total_amount.each_with_object({}) do |(key, value), acc|
-        categroy, subcategory = key
-        acc[categroy] ||= { name: categroy, children: [] }
-        acc[categroy][:children] << { name: subcategory, value: value / Expense::FACTOR }
-      end.values
+    def amount_by_subcategory
+      render json: CategoryAmountResource.new(
+        Subcategory.expenses_by_month(
+          category_id: params[:id],
+          account_id: current_account.id,
+          month: CurrentMonth.new(params[:current_month])
+        )
+      ).serialize
     end
   end
 end

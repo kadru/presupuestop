@@ -20,7 +20,12 @@ Rails.application.routes.draw do
 
   get "dashboard" => "dashboard#index"
   namespace :dashboard do
-    resources :expenses, only: %i[index]
+    resources :expenses, only: [] do
+      collection do
+        get :amount_by_category
+      end
+      get :amount_by_subcategory, on: :member
+    end
   end
 
   get "profile" => "profile#show"

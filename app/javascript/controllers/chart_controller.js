@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import { Sunburst } from "../charts/sunburst";
+import { PieChart } from "../charts/piechart";
 
 // Connects to data-controller="chart"
 export default class extends Controller {
@@ -10,6 +10,7 @@ export default class extends Controller {
 
   initialize() {
     this.resizeChart = this.resizeChart.bind(this);
+    this.categoriesOptionId = 'categories';
   }
 
   async connect() {
@@ -19,28 +20,37 @@ export default class extends Controller {
       return;
     }
 
-    const dashboardExpenses = await this.fetchDashboardExpenses();
-    if (dashboardExpenses.length === 0) {
+    const expensesByCategory = await this.fetchExpensesByCategory();
+    if (expensesByCategory.length === 0) {
       return;
     }
 
-    this.sunburst = new Sunburst({ 
-      element: this.element,
-      data: dashboardExpenses,
-      title: this.titleValue,
-      theme: this.theme()});
+    this.chart = new PieChart(
+      {
+        id: this.categoriesOptionId,
+        dataId: this.categoriesOptionId,
+        element: this.element,
+        data: expensesByCategory,
+        goBackText: "Back",
+        onSeriesClick: async (params, stackSize) => {
+          if(stackSize === 0) {
+            const amountsBySubcategory =  await this.fetchExpensesSubCategory(params.data.groupId);
+            this.chart.goForward("subcategories", amountsBySubcategory);
+          }
+        }
+      });
 
     window.addEventListener('resize', this.resizeChart);
-    this.sunburst.render();
+    this.chart.render();
   }
 
   disconnect() {
     document.removeEventListener('resize', this.resizeChart)
-    this.sunburst?.dispose();
+    this.chart?.dispose();
   }
 
   resizeChart() {
-    this.sunburst.resize()
+    this.chart.resize()
   }
 
   theme() {
@@ -53,6 +63,22 @@ export default class extends Controller {
 
   async fetchDashboardExpenses() {
     const response = await fetch(`dashboard/expenses?${new URLSearchParams({
+      current_month: this.currentMonthValue
+    }).toString()}`)
+
+    return await response.json()
+  }
+
+  async fetchExpensesByCategory() {
+    const response = await fetch(`dashboard/expenses/amount_by_category?${new URLSearchParams({
+      current_month: this.currentMonthValue
+    }).toString()}`)
+
+    return await response.json()
+  }
+
+  async fetchExpensesSubCategory(categoryId) {
+    const response = await fetch(`dashboard/expenses/${categoryId}/amount_by_subcategory?${new URLSearchParams({
       current_month: this.currentMonthValue
     }).toString()}`)
 
