@@ -46,6 +46,12 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache-dependency-path: yarn.lock
+
       - name: Cache sprockets assets
         uses: actions/cache@v3
         with:
