@@ -11,7 +11,7 @@ class CategoryAmountResource
       {
         groupId: category[0],
         name: category[1],
-        value: amount
+        value: amount / Expense::FACTOR
       }
     end
   end

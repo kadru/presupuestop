@@ -27,12 +27,12 @@ module Dashboard
               {
                 groupId: Integer,
                 name: "vivienda",
-                value: 20_000
+                value: 200
               },
               {
                 groupId: Integer,
                 name: "alimentacion",
-                value: 10_000
+                value: 100
               }
             ]
         end
@@ -59,12 +59,12 @@ module Dashboard
               {
                 groupId: Integer,
                 name: "renta",
-                value: 10_000
+                value: 100
               },
               {
                 groupId: Integer,
                 name: "mantenimiento",
-                value: 10_000
+                value: 100
               }
             ]
         end
