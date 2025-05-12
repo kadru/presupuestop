@@ -5,4 +5,8 @@ module ApplicationHelper
   def resource_title
     t("resource.title.#{controller.controller_name}")
   end
+
+  def in_json(**keys)
+    keys.to_json
+  end
 end

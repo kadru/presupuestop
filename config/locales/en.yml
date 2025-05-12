@@ -323,4 +323,6 @@ en:
     change_password: Change Password
     change_login: Change Email
     close_account: Close Account
-    setup_webauthn: Setup 2FA auth  
+    setup_webauthn: Setup 2FA auth
+  # general translations
+  back: back

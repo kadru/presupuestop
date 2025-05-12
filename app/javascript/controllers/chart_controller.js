@@ -4,8 +4,8 @@ import { PieChart } from "../charts/piechart";
 // Connects to data-controller="chart"
 export default class extends Controller {
   static values = {
-    title: String,
-    currentMonth: String
+    i18n: Object,
+    currentMonth: String,
   }
 
   initialize() {
@@ -28,6 +28,7 @@ export default class extends Controller {
     this.chart = new PieChart(
       {
         id: this.categoriesOptionId,
+        title: this.i18nValue.title,
         dataId: this.categoriesOptionId,
         element: this.element,
         data: expensesByCategory,
