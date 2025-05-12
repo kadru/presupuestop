@@ -29,21 +29,24 @@ export class PieChart {
       theme = 'dark',
       dataId = 0,
       onSeriesClick = () => {},
+      title = '',
       goBackText = '',
     }
    ){
+
+    this.title = title,
+    this.goBackText = goBackText;
+    this.dataId = dataId;
      // this is used for navigation in the chart
      this.optionsStack = [];
      this.allOptions = {};
-
      this.allOptions[dataId] = this.#optionConfig({dataId: dataId, data: data});
-     this.dataId = dataId;
-     this.goBackText = goBackText;
+
      this.chart = echarts.init(element, theme);
 
      this.chart.on("click", 'series', (params) => {
        onSeriesClick(params, this.optionsStack.length);
-     })
+     });
    }
 
   render(option = {}) {
@@ -65,8 +68,8 @@ export class PieChart {
   }
 
   goForward(seriesId, data) {
-    this.allOptions[seriesId] = this.#optionConfig({dataId: seriesId, data: data});
     this.optionsStack.push(this.#currentOptionId());
+    this.allOptions[seriesId] = this.#optionConfig({dataId: seriesId, data: data});
     this.render(this.allOptions[seriesId])
   }
 
@@ -85,9 +88,14 @@ export class PieChart {
     return this.chart.getOption().id
   }
 
-  #optionConfig({dataId, data}) {
+  #optionConfig({ dataId, data }) {
+    const goBackText = this.optionsStack.length === 0 ?  '' : this.goBackText;
+
     return {
       id: dataId,
+      title: {
+        text:  this.title,
+      },
       tooltip: {
         trigger: 'item'
       },
@@ -102,9 +110,9 @@ export class PieChart {
         {
           type: 'text',
           left: 10,
-          top: 1,
+          bottom: 10,
           style: {
-            text: this.goBackText,
+            text: goBackText,
             fontSize: 18,
             fill: 'grey'
           },
