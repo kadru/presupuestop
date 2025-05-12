@@ -140,7 +140,8 @@ export class PieChart {
          }
        },
        label: {
-        formatter: '{b}: {d}%'
+        formatter: '{b} {d}%',
+        overflow: 'break',
        }
      }
    ]
