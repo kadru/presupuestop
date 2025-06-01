@@ -11,7 +11,10 @@
       <%= t(".dont_have_account") %>
     </div>
     <div class="pure-u-1-2 text-right">
-      <%= link_to rodauth.create_account_link_text, rodauth.create_account_path, class: "pure-button" %>
+      <%= link_to(rodauth.create_account_link_text,
+                  rodauth.create_account_path,
+                  class: "pure-button",
+                  data: { turbo: false }) %>
     </div>
   </div>
   <br>

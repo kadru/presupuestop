@@ -28,6 +28,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def setup
+    webmmock_setup
     Capybara.app_host = "http://localhost"
     Capybara.default_max_wait_time = 10
     Capybara::Lockstep.debug = ENV.fetch("CAPYBARA_LOCKSTEP_DEBUG", false)
@@ -41,6 +42,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
         user_verification: true
       )
     )
+  end
+
+  def webmmock_setup
+    WebMock.disable_net_connect!(allow_localhost: true) # allow to capybara to connect to localhost
   end
 
   def create_expense

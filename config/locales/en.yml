@@ -326,3 +326,4 @@ en:
     setup_webauthn: Setup 2FA auth
   # general translations
   back: back
+  failed_captcha_message: Captcha verification failed. Please retry!

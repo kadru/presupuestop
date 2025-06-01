@@ -46,7 +46,10 @@
                       class: "pure-form-message warning",
                       id: "password_error_message") if rodauth.field_error(rodauth.password_param) %>
     <% end %>
-
   </fieldset>
+  <% if rodauth.valid_login_entered? %>
+    <%= turnstile_captcha %>
+  <% end %>
+  <br>
   <%= form.submit rodauth.login_button, class: "pure-button pure-input-1 pure-button-primary" %>
 <% end %>
