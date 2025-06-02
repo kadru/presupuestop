@@ -9,7 +9,9 @@ class RodauthController < ApplicationController
                 # Only runs this validation for the second phase of the login (when password is send)
                 if: -> { request.post? && params[rodauth.password_param].present? }
   before_action :verify_turnstile_captcha,
-                only: %i[create_account verify_account_resend],
+                only: %i[create_account
+                         verify_account_resend
+                         reset_password_request],
                 if: -> { request.post? }
 
   private

@@ -2,7 +2,9 @@
   <br>
   <div class="pure-g text-center">
     <div class="pure-u-1">
-      <%= link_to rodauth.reset_password_request_link_text, rodauth.reset_password_request_path %>
+      <%= link_to(rodauth.reset_password_request_link_text,
+                  rodauth.reset_password_request_path,
+                  data: { turbo: false }) %>
     </div>
   </div>
   <br>
