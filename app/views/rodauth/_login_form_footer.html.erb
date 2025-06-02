@@ -20,7 +20,7 @@
   <br>
   <div class="pure-g">
     <div class="pure-u-1">
-      <%= link_to rodauth.verify_account_resend_link_text, rodauth.verify_account_resend_path %>
+      <%= link_to rodauth.verify_account_resend_link_text, rodauth.verify_account_resend_path, data: { turbo: false } %>
     </div>
   </div>
 <% end %>

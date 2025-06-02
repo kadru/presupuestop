@@ -25,5 +25,7 @@
                       id: "login_error_message") if rodauth.field_error(rodauth.login_param) %>
     <% end %>
   </fieldset>
+  <%= turnstile_captcha %>
+  <br>
   <%= form.submit rodauth.verify_account_resend_button, class: "pure-button pure-input-1 pure-button-primary" %>
 <% end %>
