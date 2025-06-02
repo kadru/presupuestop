@@ -14,6 +14,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def login(email: "user@example.com", password: "averysecret")
+    stub_turnstile_site_verify(request_response: "")
     visit "/login"
     fill_in "login", with: email
     click_on translate!("rodauth.login_button")
@@ -27,7 +28,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on translate!("rodauth.logout_button")
   end
 
-  def setup
+  setup do
     webmmock_setup
     Capybara.app_host = "http://localhost"
     Capybara.default_max_wait_time = 10
@@ -45,7 +46,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def webmmock_setup
-    WebMock.disable_net_connect!(allow_localhost: true) # allow to capybara to connect to localhost
+    WebMock.disable_net_connect!(
+      allow_localhost: true, # allow to capybara to connect to localhost
+      net_http_connect_on_start: true
+    )
   end
 
   def create_expense
