@@ -8,11 +8,17 @@ class RodauthController < ApplicationController
                 only: :login,
                 # Only runs this validation for the second phase of the login (when password is send)
                 if: -> { request.post? && params[rodauth.password_param].present? }
+  before_action :verify_turnstile_captcha_create_account,
+                only: :create_account,
+                if: -> { request.post? }
+
+  private
 
   def verify_turnstile_captcha
     return if Turnstile.siteverify(params["cf-turnstile-response"])
 
     flash[:alert] = t("failed_captcha_message")
-    redirect_to rodauth.login_path
+    redirect_back_or_to "/"
   end
+  alias verify_turnstile_captcha_create_account verify_turnstile_captcha
 end

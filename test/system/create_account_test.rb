@@ -8,6 +8,7 @@ class CreateAccount < ApplicationSystemTestCase
   end
 
   test "create account" do
+    stub_turnstile_site_verify(request_response: "")
     visit "/create-account"
     fill_in "email", with: "user@example.com"
     fill_in "password", with: "averysecurepassword"
@@ -18,6 +19,8 @@ class CreateAccount < ApplicationSystemTestCase
   end
 
   test "create account with invalid email" do
+    stub_turnstile_site_verify(request_response: "")
+
     visit "/create-account"
     fill_in "email", with: "invalid@email"
     fill_in "password", with: "averysecurepassword"
