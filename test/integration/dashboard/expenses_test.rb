@@ -3,9 +3,10 @@
 require "test_helper"
 
 module Dashboard
-  class ExpensesTest < ActionDispatch::IntegrationTest
+  class ExpensesTest < ApplicationIntegrationTest
     describe "GET /dashboard/expenses/amount_by_category" do
       it "renders json grouped expenses sum by category" do
+        stub_turnstile_site_verify
         account = create(:account, :with_expenses)
         category = account.categories.last
         subcategory = create(
@@ -40,7 +41,9 @@ module Dashboard
     end
 
     describe "GET /dashboard/expenses/:id/amount_by_subcategory" do
-      it "renders json grouped expenses sum by subcategory" do
+      it "renders json grouped expe
+      nses sum by subcategory" do
+        stub_turnstile_site_verify
         account = create(:account, :with_expenses)
         category = account.categories.last
         subcategory = create(
@@ -69,12 +72,6 @@ module Dashboard
             ]
         end
       end
-    end
-
-    private
-
-    def login(email: "user@example.com", password: "secret")
-      post "/login", as: :json, params: { email:, password: }
     end
   end
 end
