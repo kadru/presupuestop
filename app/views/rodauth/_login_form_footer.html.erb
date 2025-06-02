@@ -2,7 +2,9 @@
   <br>
   <div class="pure-g text-center">
     <div class="pure-u-1">
-      <%= link_to rodauth.reset_password_request_link_text, rodauth.reset_password_request_path %>
+      <%= link_to(rodauth.reset_password_request_link_text,
+                  rodauth.reset_password_request_path,
+                  data: { turbo: false }) %>
     </div>
   </div>
   <br>
@@ -11,13 +13,16 @@
       <%= t(".dont_have_account") %>
     </div>
     <div class="pure-u-1-2 text-right">
-      <%= link_to rodauth.create_account_link_text, rodauth.create_account_path, class: "pure-button" %>
+      <%= link_to(rodauth.create_account_link_text,
+                  rodauth.create_account_path,
+                  class: "pure-button",
+                  data: { turbo: false }) %>
     </div>
   </div>
   <br>
   <div class="pure-g">
     <div class="pure-u-1">
-      <%= link_to rodauth.verify_account_resend_link_text, rodauth.verify_account_resend_path %>
+      <%= link_to rodauth.verify_account_resend_link_text, rodauth.verify_account_resend_path, data: { turbo: false } %>
     </div>
   </div>
 <% end %>

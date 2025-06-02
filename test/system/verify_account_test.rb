@@ -8,6 +8,7 @@ class VerifyAccountTest < ApplicationSystemTestCase
   end
 
   test "login with a unveryfied account after grace period" do
+    stub_turnstile_site_verify(request_response: "")
     account = create(:unverified_account, :expired_grace_period)
 
     visit "/login"
@@ -28,6 +29,7 @@ class VerifyAccountTest < ApplicationSystemTestCase
   end
 
   test "resend verify account" do
+    stub_turnstile_site_verify(request_response: "")
     account = create(:unverified_account, :expired_grace_period)
 
     visit "/login"

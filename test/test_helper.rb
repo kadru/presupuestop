@@ -4,10 +4,16 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/mock"
+require "webmock"
+require "httpx/adapters/webmock"
+require "webmock/minitest"
+require_relative "application_integration_test"
+require "utils/webmock_stubs"
 
 module ActiveSupport
   class TestCase
     include FactoryBot::Syntax::Methods
+    include WebmockStubs
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
@@ -38,6 +44,10 @@ module ActiveSupport
       assert_equal(to, email.to.first)
       msgs.clear
       email
+    end
+
+    def webmock_disable!
+      WebMock.disable!
     end
   end
 end

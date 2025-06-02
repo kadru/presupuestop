@@ -72,6 +72,7 @@
     <% end %>
   <% end %>
   </fieldset>
-
+  <%= turnstile_captcha %>
+  <br>
   <%= form.submit rodauth.create_account_button, class: "pure-button pure-input-1 pure-button-primary" %>
 <% end %>
