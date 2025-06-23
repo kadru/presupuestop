@@ -5,7 +5,7 @@
                              partial: "categories/add_subcategory",
                              locals: {
                                index: index.to_i + 1 } %>
-    <%= turbo_stream.append "nested-subcategories",
+    <%= turbo_stream.prepend "nested-subcategories",
                             partial: "subcategories/form",
                             locals: {
                               form: subcategory_form
