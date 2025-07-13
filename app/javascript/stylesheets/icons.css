@@ -1,3 +1,7 @@
 span[class*="material-symbols-"] {
-  font-size: 34px;
+  font-size: 1.1rem;
+}
+
+span[class*="material-symbols-"].lg {
+  font-size: 1.9rem;
 }
