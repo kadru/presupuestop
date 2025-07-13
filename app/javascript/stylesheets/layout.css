@@ -124,3 +124,9 @@
     display: none;
   }
 }
+
+@media (min-width: 48em) {
+  .menu-sm-screen {
+    display: none;
+  }
+}
