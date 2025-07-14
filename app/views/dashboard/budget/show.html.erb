@@ -1,2 +1,5 @@
-<h1>Dashboard::Budget#show</h1>
-<p>Find me in app/views/dashboard/budget/show.html.erb</p>
+<%# locals: (current_month:) %>
+<%= render "month_selector",
+            current_month: current_month,
+            controller: controller_name,
+            action: :show %>

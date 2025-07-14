@@ -1,13 +1,10 @@
-<%# locals: (current_month:,
-             prev_month:,
-             next_month:,
-             controller:) %>
+<%# locals: (current_month:, controller:, action: :index, prev_month: nil, next_month: nil) %>
 
 <div class="month-selector">
   <div>
     <%= link_to({ controller:,
-                  action: :index,
-                  params: { current_month: prev_month } },
+                  action: action,
+                  params: { current_month: current_month.prev_month } },
                   title: t(".prev_month")) do %>
       <span class="material-symbols-outlined">
         arrow_back
@@ -37,8 +34,8 @@
   </div>
   <div>
     <%= link_to({ controller:,
-                  action: :index,
-                  params: { current_month: next_month } },
+                  action: action,
+                  params: { current_month: current_month.next_month } },
                   title: t(".next_month", raise:true)) do %>
       <span class="material-symbols-outlined">
         arrow_forward

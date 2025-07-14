@@ -11,9 +11,7 @@ class ExpensesController < AuthenticatedController
              new_expense: Expense.new(month: current_month),
              categories: current_account.categories.for_select,
              subcategories: [],
-             current_month:,
-             prev_month: current_month.prev_month,
-             next_month: current_month.next_month
+             current_month:
            }
   end
 
