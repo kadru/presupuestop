@@ -1,0 +1,28 @@
+<div class="sidebar pure-u-1 pure-u-md-1-5">
+  <div class="nav-menu-wrapper">
+    <header class="header">
+      <a id="toggle-menu"
+         href="javascript:void(0);"
+         data-action="click->toggle#toggle">
+        <span class="material-symbols-outlined lg">menu</span>
+      </a>
+      <div id="menu" class="app-menu pure-menu" data-toggle-target="element">
+        <div class="pure-menu-heading">
+         MENU
+        </div>
+        <%= render "menu" %>
+      </div>
+      <nav class="nav">
+        <div class="pure-menu pure-menu-horizontal pure-menu-scrollable menu-sm-screen">
+          <%= render "sidebar_links" %>
+        </div>
+        <div class="pure-menu pure-menu-vertical menu-lg-screen">
+          <%= render "sidebar_links" %>
+        </div>
+      </nav>
+    </header>
+    <div class="menu-lg-screen app-menu pure-menu text-right">
+      <%= render "menu" %>
+    </div>
+  </div>
+</div>

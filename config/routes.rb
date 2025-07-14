@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get "dashboard" => "dashboard#index"
   namespace :dashboard do
+    get "budget/show"
     resources :expenses, only: [] do
       collection do
         get :amount_by_category

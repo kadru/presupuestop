@@ -316,8 +316,10 @@ en:
       total: Total
 
   links:
-    home: home
-    expenses: expenses
+    home: Home
+    expenses: Expenses
+    categories: Categories
+    budget: Budget
     profile: Profile
     remember: Remember Setting
     change_password: Change Password
