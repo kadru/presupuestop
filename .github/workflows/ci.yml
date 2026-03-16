@@ -22,8 +22,8 @@ jobs:
         run: |
           bin/rubocop --parallel
 
-  run-tests:
-    name: Tests
+  run-unit-tests:
+    name: Unit Tests
     runs-on: ubuntu-22.04
     services:
       postgres:
@@ -39,7 +39,64 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache-dependency-path: yarn.lock
+      - name: Cache sprockets assets
+        uses: actions/cache@v3
+        with:
+          path: |
+            public/assets
+            tmp/assets
+          key: ${{ runner.os }}-sprockets-${{ hashFiles('app/assets/**/*')}}
+
+      - name: Precompile assets
+        env:
+          RAILS_ENV: test
+        run: bin/rails assets:precompile
+
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost
+        run: bin/rails ci:setup_db
+
+      - name: Run unit tests
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost/presupuestop_test
+          DEFAULT_FROM_MAILER: no-reply@example.com
+          TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
+          TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+        run: bin/rails test
+
+  run-system-tests:
+    name: System Tests
+    runs-on: ubuntu-22.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10ms
+          --health-timeout 500ms
+          --health-retries 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -68,15 +125,15 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/waterflow_app_test
+          DATABASE_URL: postgres://postgres:postgres@localhost
         run: bin/rails ci:setup_db
 
-      - name: Run tests
+      - name: Run system tests
         env:
           RAILS_ENV: test
           DEFAULT_FROM_MAILER: no-reply@example.com
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/waterflow_app_test
-          # turnstile
+          DATABASE_URL: postgres://postgres:postgres@localhost/presupuestop_test
           TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
           TURNSTILE_SITE_KEY: 1x00000000000000000000AA
-        run: bin/rails test:all
+          CHROME_BIN: /usr/bin/google-chrome
+        run: bin/rails test:system
