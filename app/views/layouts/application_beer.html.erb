@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @page_title || resource_title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="google" content="notranslate">
+    <%= capybara_lockstep if defined?(Capybara::Lockstep) %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= vite_client_tag %>
+    <%= vite_stylesheet_tag "application_beer" %>
+    <%= vite_javascript_tag "application_beer" %>
+  </head>
+
+  <body class="dark">
+    <nav class="left max l">
+      <header>
+        <nav>
+          <img alt="logo" src="https://www.beercss.com/favicon.png" class="circle extra">
+          <h6>Presupuestop</h6>
+        </nav>
+      </header>
+      <a href="<%= dashboard_path %>">
+        <i>home</i>
+        <span><%= t("links.home") %></span>
+      </a>
+      <a href="<%= expenses_path %>">
+        <i>receipt_long</i>
+        <span><%= t("links.expenses") %></span>
+      </a>
+      <a href="<%= categories_path %>">
+        <i>category</i>
+        <span><%= t("links.categories") %></span>
+      </a>
+    </nav>
+
+    <nav class="left m">
+      <header>
+        <img alt="logo" src="https://www.beercss.com/favicon.png" class="circle extra">
+      </header>
+      <a href="<%= dashboard_path %>">
+        <i>home</i>
+        <span><%= t("links.home") %></span>
+      </a>
+      <a href="<%= expenses_path %>">
+        <i>receipt_long</i>
+        <span><%= t("links.expenses") %></span>
+      </a>
+      <a href="<%= categories_path %>">
+        <i>category</i>
+        <span><%= t("links.categories") %></span>
+      </a>
+    </nav>
+
+    <nav class="bottom s">
+      <a href="<%= dashboard_path %>">
+        <i>home</i>
+      </a>
+      <a href="<%= expenses_path %>">
+        <i>receipt_long</i>
+      </a>
+      <a href="<%= categories_path %>">
+        <i>category</i>
+      </a>
+    </nav>
+
+    <main class="responsive">
+      <div class="flash">
+        <%= render "shared/flash" %>
+      </div>
+      <%= yield %>
+    </main>
+  </body>
+</html>

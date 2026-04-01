@@ -2,6 +2,8 @@
 
 # Main application controller, define here methods to inherit to all sub controllers
 class ApplicationController < ActionController::Base
+  layout -> { UI_THEME == :beer ? "application_beer" : "application" }
+
   private
 
   # @return [Account]

@@ -3,7 +3,10 @@
 # Used by Rodauth for rendering views, CSRF protection, and running any registered action callbacks and
 # rescue_from handlers
 class RodauthController < ApplicationController
-  layout "authentication"
+  layout -> { UI_THEME == :beer ? "authentication_beer" : "authentication" }
+
+  before_action :prepend_beer_view_prefix, if: -> { UI_THEME == :beer }
+
   before_action :verify_turnstile_captcha_login,
                 only: :login,
                 # Only runs this validation for the second phase of the login (when password is send)
@@ -15,6 +18,10 @@ class RodauthController < ApplicationController
                 if: -> { request.post? }
 
   private
+
+  def prepend_beer_view_prefix
+    lookup_context.prefixes.unshift("rodauth/beer")
+  end
 
   def verify_turnstile_captcha
     return if Turnstile.siteverify(params["cf-turnstile-response"])

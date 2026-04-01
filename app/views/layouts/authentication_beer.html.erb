@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @page_title || "Presupuestop" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="google" content="notranslate">
+    <%= capybara_lockstep if defined?(Capybara::Lockstep) %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= vite_client_tag %>
+    <%= vite_stylesheet_tag "application_beer" %>
+    <%= vite_javascript_tag "application_beer" %>
+    <%= turnstile_javascript_tag %>
+  </head>
+  <body class="dark center-align middle-align">
+    <main class="responsive">
+      <div class="flash">
+        <%= render "shared/flash" %>
+      </div>
+      <%= yield %>
+    </main>
+  </body>
+</html>
