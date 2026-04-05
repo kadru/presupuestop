@@ -1,0 +1,33 @@
+<% unless rodauth.login_form_footer_links.empty? %>
+  <div class="row right-align">
+    <div class="col s6">
+      <%= t(".dont_have_account") %>
+    </div>
+    <div class="col s6">
+      <%= link_to(
+        rodauth.create_account_link_text,
+        rodauth.create_account_path,
+        class: "button",
+        data: {
+          turbo: false,
+        },
+      ) %>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to(
+      rodauth.reset_password_request_link_text,
+      rodauth.reset_password_request_path,
+      data: {
+        turbo: false,
+      },
+    ) %>
+  </div>
+  <div class="row">
+    <%= link_to rodauth.verify_account_resend_link_text,
+    rodauth.verify_account_resend_path,
+    data: {
+      turbo: false,
+    } %>
+  </div>
+<% end %>
