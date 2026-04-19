@@ -1,0 +1,46 @@
+<%= form_with(url: rodauth.login_path, method: :post, data: { turbo: false }) do |form| %>
+  <div class="field border label">
+    <% if rodauth.skip_login_field_on_login? %>
+      <%= form.email_field rodauth.login_param,
+                         value: params[rodauth.login_param],
+                         id: "login",
+                         readonly: true %>
+      <%= form.label "login", rodauth.login_label %>
+    <% else %>
+      <%= form.email_field rodauth.login_param,
+                         value: params[rodauth.login_param],
+                         id: "login",
+                         autocomplete: rodauth.login_field_autocomplete_value,
+                         required: true,
+                         aria: (if rodauth.field_error(rodauth.login_param)
+                           { invalid: true, describedby: "login_error_message" }
+                         end) %>
+      <%= form.label "login", rodauth.login_label %>
+      <% if rodauth.field_error(rodauth.login_param) %>
+        <%= content_tag(:span, rodauth.field_error(rodauth.login_param), class: "error", id: "login_error_message") %>
+      <% end %>
+    <% end %>
+  </div>
+  <% unless rodauth.skip_password_field_on_login? %>
+    <div class="field label border">
+      <%= form.password_field rodauth.password_param,
+                          value: "",
+                          id: "password",
+                          autocomplete: rodauth.password_field_autocomplete_value,
+                          required: true,
+                          aria: (if rodauth.field_error(rodauth.password_param)
+                            { invalid: true, describedby: "password_error_message" }
+                          end) %>
+      <%= form.label "password", rodauth.password_label %>
+      <% if rodauth.field_error(rodauth.password_param) %>
+        <%= content_tag(:span, rodauth.field_error(rodauth.password_param), class: "error", id: "password_error_message") %>
+      <% end %>
+    </div>
+  <% end %>
+  <% if rodauth.valid_login_entered? %>
+    <%= turnstile_captcha %>
+  <% end %>
+  <div class="row right-align">
+    <%= form.submit rodauth.login_button, class: "button primary" %>
+  </div>
+<% end %>
