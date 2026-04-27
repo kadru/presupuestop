@@ -21,7 +21,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     fill_in "password", with: password
     click_on translate!("rodauth.login_button")
 
-    assert_text "HOME"
+    assert_text translate!("rodauth.login_notice_flash")
   end
 
   def logout
