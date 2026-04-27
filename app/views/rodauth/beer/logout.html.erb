@@ -1,0 +1,20 @@
+<article class="large-width center">
+  <h2><%= rodauth.logout_page_title %></h2>
+  <%= form_with url: rodauth.logout_path,
+                method: :post,
+                data: { turbo: false } do |form| %>
+    <% if rodauth.features.include?(:active_sessions) %>
+      <label class="checkbox">
+        <%= form.checkbox rodauth.global_logout_param,
+                      id: "global-logout",
+                      include_hidden: false %>
+        <span><%= rodauth.global_logout_label %></span>
+      </label>
+    <% end %>
+
+    <div class="row right-align">
+      <%= form.submit rodauth.logout_button, class: "button primary" %>
+    </div>
+  <% end %>
+</article>
+
