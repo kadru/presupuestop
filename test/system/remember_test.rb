@@ -8,7 +8,7 @@ class Remember < ApplicationSystemTestCase
 
     login email: account.email, password: "verysecretpassword"
     visit "/remember"
-    choose "remember", option: "forget"
+    choose "remember", option: "forget", allow_label_click: true
     click_on translate!("rodauth.remember_button")
 
     assert_text translate!("rodauth.remember_notice_flash")

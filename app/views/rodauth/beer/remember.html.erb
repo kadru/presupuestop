@@ -1,0 +1,36 @@
+<article class="large-width center">
+  <h2><%= rodauth.remember_page_title %></h2>
+  <%= form_with url: rodauth.remember_path,
+                method: :post,
+                data: { turbo: false } do |form| %>
+    <label class="radio">
+      <%= form.radio_button rodauth.remember_param,
+                        rodauth.remember_remember_param_value,
+                        id: "remember-remember",
+                        name: rodauth.remember_param %>
+      <span><%= rodauth.remember_remember_label %></span>
+    </label>
+
+    <label class="radio">
+      <%= form.radio_button rodauth.remember_param,
+                        rodauth.remember_forget_param_value,
+                        id: "remember-forget",
+                        name: rodauth.remember_param %>
+      <span><%= rodauth.remember_forget_label %></span>
+    </label>
+
+    <label class="radio">
+      <%= form.radio_button rodauth.remember_param,
+                        rodauth.remember_disable_param_value,
+                        id: "remember-disable",
+                        name: rodauth.remember_param %>
+      <span><%= rodauth.remember_disable_label %></span>
+    </label>
+
+    <div class="space"></div>
+    <div class="row right-align">
+      <%= form.submit rodauth.remember_button, class: "button primary" %>
+    </div>
+  <% end %>
+</article>
+
