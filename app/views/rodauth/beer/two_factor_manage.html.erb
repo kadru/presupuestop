@@ -1,0 +1,32 @@
+<article class="large-width center">
+  <h2><%= rodauth.two_factor_manage_page_title %></h2>
+
+  <% unless rodauth.two_factor_setup_links.empty? %>
+    <h5><%= rodauth.two_factor_setup_heading %></h5>
+    <ul class="list no-space">
+      <% rodauth.two_factor_setup_links.each do |_, link, text| %>
+        <li>
+          <%= link_to text, link %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% unless rodauth.two_factor_remove_links.empty? %>
+    <h5><%= rodauth.two_factor_remove_heading %></h5>
+    <ul class="list no-space">
+      <% rodauth.two_factor_remove_links.each do |_, link, text| %>
+        <li>
+          <%= link_to text, link %>
+        </li>
+      <% end %>
+      <% if rodauth.two_factor_remove_links.length > 1 %>
+        <li>
+          <%= link_to rodauth.two_factor_disable_link_text,
+          rodauth.two_factor_disable_path,
+          class: "button secondary" %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</article>

@@ -1,0 +1,68 @@
+<article class="large-width center">
+  <h2><%= rodauth.webauthn_remove_page_title %></h2>
+  <%= form_with url: rodauth.webauthn_remove_path,
+                method: :post,
+                id: "webauthn-remove-form",
+                data: { turbo: false } do |form| %>
+    <% if rodauth.two_factor_modifications_require_password? %>
+      <div class="field label border">
+        <%= form.password_field rodauth.password_param,
+                            value: "",
+                            id: "password",
+                            autocomplete: rodauth.password_field_autocomplete_value,
+                            required: true,
+                            aria:
+                              (
+                                if rodauth.field_error(rodauth.password_param)
+                                  {
+                                    invalid: true,
+                                    describedby: "password_error_message",
+                                  }
+                                end
+                              ) %>
+        <%= form.label "password", rodauth.password_label %>
+        <%= if rodauth.field_error(rodauth.password_param)
+          content_tag(
+            :span,
+            rodauth.field_error(rodauth.password_param),
+            class: "error",
+            id: "password_error_message",
+          )
+        end %>
+      </div>
+    <% end %>
+    <div class="space"></div>
+
+    <% usage = rodauth.account_webauthn_usage %>
+    <% usage.each do |id, last_use| %>
+      <label class="radio">
+        <%= form.radio_button rodauth.webauthn_remove_param,
+                          id,
+                          id: "webauthn-remove-#{id}",
+                          aria:
+                            (
+                              if rodauth.field_error(rodauth.webauthn_remove_param)
+                                {
+                                  invalid: true,
+                                  describedby: "webauthn_remove_error_message",
+                                }
+                              end
+                            ) %>
+        <span><%= "Last use: #{last_use}" %></span>
+      </label>
+      <% if rodauth.field_error(rodauth.webauthn_remove_param) && id == usage.keys.last %>
+        <%= content_tag(
+          :span,
+          rodauth.field_error(rodauth.webauthn_remove_param),
+          class: "error",
+          id: "webauthn_remove_error_message",
+        ) %>
+      <% end %>
+    <% end %>
+
+    <div class="space"></div>
+    <div class="row right-align">
+      <%= form.submit rodauth.webauthn_remove_button, class: "button primary" %>
+    </div>
+  <% end %>
+</article>

@@ -1,1 +1,5 @@
 @import 'beercss/dist/cdn/beer.min.css';
+
+.hidden {
+    display: none;
+}
