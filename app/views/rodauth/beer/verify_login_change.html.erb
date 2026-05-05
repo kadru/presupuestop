@@ -1,0 +1,12 @@
+<article class="large-width center">
+  <h2><%= rodauth.verify_login_change_page_title %></h2>
+  <%= form_with url: rodauth.verify_login_change_path,
+                method: :post,
+                data: { turbo: false } do |form| %>
+    <div class="space"></div>
+    <div class="row right-align">
+      <%= form.submit rodauth.verify_login_change_button, class: "button primary" %>
+    </div>
+  <% end %>
+</article>
+
