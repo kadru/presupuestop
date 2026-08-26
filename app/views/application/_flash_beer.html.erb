@@ -1,0 +1,6 @@
+<% flash.each do |flash_type, message| %>
+  <div class="snackbar active <%= flash_snackbar_type(flash_type) %>">
+    <i><%= flash_icon(flash_type) %></i>
+    <span><%= message %></span>
+  </div>
+<% end %>

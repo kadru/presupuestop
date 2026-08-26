@@ -11,4 +11,12 @@ module ApplicationHelper
   def in_json(**keys)
     keys.to_json
   end
+
+  def flash_icon(flash_type)
+    { "notice" => "info", "alert" => "warning", "error" => "error" }.fetch(flash_type.to_s, "info")
+  end
+
+  def flash_snackbar_type(flash_type)
+    flash_type == "error" ? "error" : ""
+  end
 end
