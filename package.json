@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
     "vite": "^5.4.11",
     "vite-plugin-ruby": "^5.1.1"
   },
@@ -13,6 +15,6 @@
     "vite-plugin-rails": "^0.5.0"
   },
   "engines": {
-    "node": "^20"
+    "node": "^22"
   }
 }
