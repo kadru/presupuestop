@@ -1,4 +1,5 @@
 @import 'beercss/dist/cdn/beer.min.css';
+@import '../stylesheets/chart.css';
 
 .hidden {
     display: none;

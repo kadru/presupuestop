@@ -32,6 +32,12 @@
         <i>category</i>
         <span><%= t("links.categories") %></span>
       </a>
+      <% if rodauth.logged_in? %>
+        <a href="<%= rodauth.logout_path %>" data-turbo-method="post">
+          <i>logout</i>
+          <span><%= I18n.t("rodauth.logout_button") %></span>
+        </a>
+      <% end %>
     </nav>
 
     <nav class="left m">
@@ -50,6 +56,12 @@
         <i>category</i>
         <span><%= t("links.categories") %></span>
       </a>
+      <% if rodauth.logged_in? %>
+        <a href="<%= rodauth.logout_path %>" data-turbo-method="post">
+          <i>logout</i>
+          <span><%= I18n.t("rodauth.logout_button") %></span>
+        </a>
+      <% end %>
     </nav>
 
     <nav class="bottom s">

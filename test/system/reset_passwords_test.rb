@@ -3,12 +3,12 @@
 require "application_system_test_case"
 
 class ResetPasswordsTest < ApplicationSystemTestCase
-  def teardown
+  teardown do
     ApplicationMailer.deliveries.clear
   end
 
   test "user requests a password reset" do
-    stub_turnstile_site_verify(request_response: "")
+    stub_turnstile_site_verify
     account = create(:account)
 
     visit "/reset-password-request"
@@ -36,7 +36,7 @@ class ResetPasswordsTest < ApplicationSystemTestCase
   end
 
   test "user requests a password reset recently" do
-    stub_turnstile_site_verify(request_response: "")
+    stub_turnstile_site_verify
     account = create(:account, :recently_password_reset)
 
     visit "/reset-password-request"

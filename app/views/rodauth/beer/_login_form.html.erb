@@ -1,7 +1,15 @@
+<% form_data = { turbo: false } %>
+<% form_data =
+  form_data.merge(
+    controller: "lock",
+    action: "turnstile:success->lock#enableTags",
+  ) if rodauth.valid_login_entered? %>
+
 <%= form_with(
       url: rodauth.login_path,
       method: :post,
-      data: { turbo: false }) do |form| %>
+      data: form_data
+    ) do |form| %>
   <div class="field border label">
     <% if rodauth.skip_login_field_on_login? %>
       <%= form.email_field rodauth.login_param,
@@ -65,7 +73,11 @@
   <% end %>
 
   <div class="row right-align">
-    <%= form.submit rodauth.login_button, class: "button primary" %>
+    <%= form.submit rodauth.login_button,
+                class: "button primary",
+                disabled: rodauth.valid_login_entered? ? true : false,
+                data: {
+                  lock_target: "tag",
+                } %>
   </div>
 <% end %>
-

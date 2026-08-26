@@ -14,7 +14,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   def login(email: "user@example.com", password: "averysecret")
-    stub_turnstile_site_verify(request_response: "")
+    stub_turnstile_site_verify
     visit "/login"
     fill_in "login", with: email
     click_on translate!("rodauth.login_button")

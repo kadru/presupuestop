@@ -4,7 +4,7 @@ require "application_system_test_case"
 
 class LoginPasswordTest < ApplicationSystemTestCase
   test "login" do
-    stub_turnstile_site_verify(request_response: "")
+    stub_turnstile_site_verify
     account = create(:account)
     visit "/login"
 
