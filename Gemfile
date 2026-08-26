@@ -63,10 +63,10 @@ group :development, :test do
 end
 
 group :development do
+  gem "lefthook", require: false
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "ruby-lsp-rails"
   gem "web-console"
-
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
