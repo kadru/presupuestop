@@ -7,6 +7,7 @@ class SignoutTest < ApplicationSystemTestCase
     account = create(:account)
 
     login(email: account.email, password: account.password)
+    visit "/"
     click_on translate!("rodauth.logout_button")
 
     assert_text translate!("rodauth.login_page_title")
