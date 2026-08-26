@@ -1,0 +1,9 @@
+pre-commit:
+  commands:
+    rubocop:
+      run: bundle exec rubocop -- {staged_files}
+      glob: "**/*.{rb}"
+commit-msg:
+  commands:
+    commitlint:
+      run: yarn commitlint --edit {1}
