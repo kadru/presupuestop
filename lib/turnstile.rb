@@ -7,7 +7,7 @@ module Turnstile
   URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
   private_constant :URL
 
-  def siteverify(token)
+  def siteverify(token) # rubocop:todo Naming/PredicateMethod
     response = HTTPX.post(
       URL,
       json: {
